@@ -1,0 +1,64 @@
+submodule ietf-SouthboundService {
+	yang-version 1.1;
+	belongs-to ietf-SystemIM {
+		prefix "SbServ";
+	}
+	include ietf-ServiceAccessPoint;
+	include ietf-NetDevService;
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 9733
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "The aim of this submodule is to describe 
+		any network service	that handles the communication 
+		by Southbound interface";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+
+	leaf-list southboundService { 
+		type identityref {
+			base SouthboundService;
+		}
+		description "Represents the services of the Southbound";
+	}
+	leaf-list ServiceSAPDependecy_SBS {
+		type union {
+			type identityref {
+				base ServiceSAPDependency;
+			}	
+		type SouthboundInterface;
+		}
+		description "Represents the relationship to ietf-ServiceAccessPoint
+		by the ServiceSAPDependency through the Southbound Interface";
+	}
+	leaf-list ProvidesEndpoint_SBS {
+		type union {
+			type identityref {
+				base ProvidesEndpoint;
+			}
+		type SouthboundInterface;
+		}
+		description "Represents the relationship to ietf-ServiceAccessPoint
+		by the ProvidesEndpoint through the Southbound Interface";
+	}
+	leaf SBIProtocol {
+		type uint16;
+		description "The property SBIProtocol may specify that the southbound 
+		communication uses the OpenFlow protocol, which defines a Secure 
+		Channel in switches for communicating with external controllers and 
+		updating internal flow tables.";
+	}
+}

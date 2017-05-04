@@ -1,0 +1,69 @@
+submodule ietf-ProtocolEndpoint{
+	yang-version 1.1;
+	belongs-to ietf-SystemIM {
+		prefix "ProEndpointYang";
+	}
+	
+	include ietf-ManagementService;
+	
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+
+	choice ProvidesEndpoint_ProEndpoint{
+		leaf Fault_GUI {
+			type leafref {
+				path "/ElementCapabilities/FaultService";
+			}
+			description "";
+		}
+		leaf Configuration_GUI {
+			type leafref {
+				path "/ElementCapabilities/ConfigurationService";
+			}
+			description "";
+		}
+		leaf Accounting_GUI {
+			type leafref {
+				path "/ElementCapabilities/AccountingService";
+			}
+			description "";
+		}
+		leaf Performance_GUI {
+			type leafref {
+				path "/ElementCapabilities/PerformanceService";
+			}
+			description "";
+		}
+		leaf Security_GUI {
+			type leafref {
+				path "/ElementCapabilities/SecurityService";
+			}
+			description "";
+		}
+		leaf Programming_GUI {
+			type leafref {
+				path "/ElementCapabilities/ProgrammingService";
+			}
+			description "";
+		}
+		description "";
+	}
+}

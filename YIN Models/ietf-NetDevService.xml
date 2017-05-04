@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<submodule name="ietf-NetDevService"
+           xmlns="urn:ietf:params:xml:ns:yang:yin:1">
+  <yang-version value="1.1"/>
+  <belongs-to module="ietf-SystemIM">
+    <prefix value="NetDevServ"/>
+  </belongs-to>
+  <include module="ietf-NetDevServiceSettings"/>
+  <organization>
+    <text>University of Cauca</text>
+  </organization>
+  <contact>
+    <text>Ana Montoya 
+Phone: +57 301 630 97331
+Email: anitamont7@gmail.com
+
+Daniela M. Casas
+Phone: +57 317 777 7225
+Email: danielacasas_@ieee.org
+
+University of Cauca 
+Calle 5 #4-70 Popayán, Cauca
+Colombia</text>
+  </contact>
+  <description>
+    <text>This submodule is for representing 
+network services hosted in network devices.</text>
+  </description>
+  <revision date="2017-04-12">
+    <description>
+       <text>Initial revision</text>
+    </description>
+    <reference>
+      <text>RFC 7950 - The YANG 1.1 Data Modeling Language
+      </text>
+    </reference>
+  </revision>
+  <leaf-list name="netDevService">
+    <type name="string"/>
+    <description>
+      <text>Device Services</text>
+    </description>
+  </leaf-list>
+  <identity name="SouthboundService">
+    <base name="NetDevServ:NetDevService"/>
+    <description>
+      <text>The SouthboundService inherits from the 
+      NetDevService and includes properties and methods to 
+      handle the communication through the SBIs</text>
+    </description>
+  </identity>
+  <identity name="NetDevService">
+    <description>
+      <text>Network Device Services</text>
+    </description>
+  </identity>
+  <leaf-list name="ServServDependency">
+    <type name="identityref">
+      <base name="NetDevService"/>
+    </type>
+    <description>
+      <text>Indicates that NetDev services cooperate 
+      with or are required for other NetDev services to 
+      perform their functions</text>
+    </description>
+  </leaf-list>
+  <leaf-list name="ElementSettingData_NetDevServ">
+    <type name="leafref">
+      <path value="/NetDevServParameters"/>
+    </type>
+    <description>
+      <text>This relationship allows the NetDevServiceSettings
+      class describing the configuration parameters of services
+      hosted in NetDevs</text>
+    </description>
+  </leaf-list>
+  <leaf name="Prority">
+    <type name="uint16"/>
+    <description>
+      <text>Indicates the preference for processing a group of 
+      services hosted by a NetDev.</text>
+    </description>
+  </leaf>
+</submodule>

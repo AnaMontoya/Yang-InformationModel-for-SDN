@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<submodule name="ietf-NetDevResource"
+           xmlns="urn:ietf:params:xml:ns:yang:yin:1">
+  <yang-version value="1.1"/>
+  <belongs-to module="ietf-SystemIM">
+    <prefix value="NetDevRsc"/>
+  </belongs-to>
+  <include module="ietf-StatisticalData"/>
+  <include module="ietf-NetDevResourceSettings"/>
+  <include module="ietf-StatisticalData"/>
+  <organization>
+    <text>University of Cauca</text>
+  </organization>
+  <contact>
+    <text>Ana Montoya 
+Phone: +57 301 630 97331
+Email: anitamont7@gmail.com
+
+Daniela M. Casas
+Phone: +57 317 777 7225
+Email: danielacasas_@ieee.org
+
+University of Cauca 
+Calle 5 #4-70 Popayán, Cauca
+Colombia</text>
+  </contact>
+  <description>
+    <text>This submodule models network elements 
+composing a NetDev, like ports, queues, and tables</text>
+  </description>
+  <revision date="2017-04-12">
+    <description>
+       <text>Initial revision</text>
+    </description>
+    <reference>
+      <text>RFC 7950 - The YANG 1.1 Data Modeling Language     </text>
+    </reference>
+  </revision>
+  <leaf-list name="netDevResource">
+    <type name="string"/>
+    <description>
+      <text>Implies the aggregation with NetDev</text>
+    </description>
+  </leaf-list>
+  <container name="Component">
+    <leaf-list name="Resources">
+      <type name="leafref">
+        <path value="/netDevResource"/>
+      </type>
+      <description>
+        <text>Connects to the NetDevResource models a 
+network element composed of others, such as ports 
+including various queues</text>
+      </description>
+    </leaf-list>
+    <description>
+      <text></text>
+    </description>
+  </container>
+  <leaf-list name="ElementSettingData_NetDevRsrc">
+    <type name="leafref">
+      <path value="/NetDevConfParameters"/>
+    </type>
+    <description>
+      <text>Reflects the relationship between 
+NetDevResourceSettings and the NetDevResource</text>
+    </description>
+  </leaf-list>
+  <leaf-list name="Statistics">
+    <type name="leafref">
+      <path value="/Statistics_NetDevRsrc"/>
+    </type>
+    <description>
+      <text>Attaches the NetDevResourceStatistics 
+with the NetDevResource</text>
+    </description>
+  </leaf-list>
+  <leaf name="ResourceType">
+    <type name="uint16"/>
+    <description>
+      <text>Allows to identify the type of network element 
+composing the NetDev</text>
+    </description>
+  </leaf>
+</submodule>

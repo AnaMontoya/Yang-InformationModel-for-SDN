@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<submodule name="ietf-AdapterServices"
+           xmlns="urn:ietf:params:xml:ns:yang:yin:1">
+  <yang-version value="1.1"/>
+  <belongs-to module="ietf-SystemIM">
+    <prefix value="AdptServYang"/>
+  </belongs-to>
+  <include module="ietf-Manager"/>
+  <include module="ietf-Adapter"/>
+  <include module="ietf-ServiceAccessPoint"/>
+  <organization>
+    <text>University of Cauca</text>
+  </organization>
+  <contact>
+    <text>Ana Montoya 
+Phone: +57 301 630 97331
+Email: anitamont7@gmail.com
+
+Daniela M. Casas
+Phone: +57 317 777 7225
+Email: danielacasas_@ieee.org
+
+University of Cauca 
+Calle 5 #4-70 Popayán, Cauca
+Colombia</text>
+  </contact>
+  <description>
+    <text>The aim of this submodule is modeling 
+adapters that parse and forward requests, responses, 
+and notifications between ManagementServices
+and AgentServices by Management Interfaces (i.e., 
+NetAppMI, NetSlicerMI 	and NetInterASMI) defined 
+in the ServiceAccessPoint.</text>
+  </description>
+  <revision date="2017-04-12">
+    <description>
+       <text>Initial revision</text>
+    </description>
+    <reference>
+      <text>RFC 7950 - The YANG 1.1 Data Modeling Language
+      </text>
+    </reference>
+  </revision>
+  <identity name="AdapterService">
+    <description>
+      <text>The AdapterService models an Adapter
+in charge of parsing and forwarding request, 
+response, and notifications between the 
+ManagementService and the AgentService.</text>
+    </description>
+  </identity>
+  <identity name="NetAppAdapterServices">
+    <base name="AdptServYang:AdapterService"/>
+    <description>
+      <text>Inherits the defintion of AdapterService, 
+it is related to the Adapter for the NetApps in the 
+Application Plane.</text>
+    </description>
+  </identity>
+  <identity name="NOSAdapterServices">
+    <base name="AdptServYang:AdapterService"/>
+    <description>
+      <text>Inherits the defintion of AdapterService, 
+it is related to the Adapter for the NOSs in the Control Plane.</text>
+    </description>
+  </identity>
+  <identity name="NetSlicerAdapterServices">
+    <base name="AdptServYang:AdapterService"/>
+    <description>
+      <text>Inherits the defintion of AdapterService, 
+it is related to the Adapter for the Slicers in the Control Plane.</text>
+    </description>
+  </identity>
+  <identity name="NetInterASAdapterServices">
+    <base name="AdptServYang:AdapterService"/>
+    <description>
+      <text>Inherits the defintion of AdapterService, 
+it is related to the Adapter for the NetInterAS in the Control Plane.</text>
+    </description>
+  </identity>
+  <identity name="NetDevAdapterServices">
+    <base name="AdptServYang:AdapterService"/>
+    <description>
+      <text>Inherits the defintion of AdapterService, 
+it is related to the Adapter for the NetDevs in the Data Plane.</text>
+    </description>
+  </identity>
+  <choice name="HostedService">
+    <description>
+      <text>Represents the relationship between 
+AdapterServices and	its hosting system, holds the 
+Adapter and Manager leaves referred to the adapter
+leaf and manager leaf, respectively, for indicating 
+that the AdapterServices may be hosted on the 
+Manager or the Adapter.</text>
+    </description>
+    <leaf name="Manager">
+      <type name="leafref">
+        <path value="/manager"/>
+      </type>
+      <description>
+        <text>Represents the system hosting the 
+Management Services (e.g., a Configuration Service 
+may be carried out as a Web application running on 
+a Manager that may be either an Apache Tomcat or a 
+GlassFish Server). It is referred to the representing 
+leaf of the manager in the Manager submodule.</text>
+      </description>
+    </leaf>
+    <leaf name="Adapter">
+      <type name="leafref">
+        <path value="/adapter"/>
+      </type>
+      <description>
+        <text>Represents a system that may host the 
+AdapterService. It is referred to the representing 
+leaf of the adapter in the Adapter submodule.</text>
+      </description>
+    </leaf>
+  </choice>
+  <leaf-list name="ProvidesEndpoint_Adpt">
+    <type name="union">
+      <type name="identityref">
+        <base name="ProvidesEndpoint"/>
+      </type>
+      <type name="AdapterInterface"/>
+    </type>
+    <description>
+      <text>Relates the AdapterServices to the 
+ManagementServices by the ServiceAccessPoint 
+tagged as AdapterInterface.</text>
+    </description>
+  </leaf-list>
+  <leaf-list name="ServiceSAPDependency_Adpt">
+    <type name="union">
+      <type name="identityref">
+        <base name="ServiceSAPDependency"/>
+      </type>
+      <type name="AdapterInterface"/>
+    </type>
+    <description>
+      <text>Relates the AdapterServices to the 
+ManagementServices by the ServiceAccessPoint 
+tagged as AdapterInterface.</text>
+    </description>
+  </leaf-list>
+  <leaf-list name="ProvidesEndpoint_AdptServ">
+    <type name="union">
+      <type name="identityref">
+        <base name="ProvidesEndpoint"/>
+      </type>
+      <type name="ManagementInterface"/>
+    </type>
+    <description>
+      <text>Models the communication point from 
+the AdapterServices to the AgentServices 
+by the ServiceAccessPoint tagged 
+as ManagementInterface.</text>
+    </description>
+  </leaf-list>
+  <leaf-list name="ServiceSAPDependency_AdptServ">
+    <type name="union">
+      <type name="identityref">
+        <base name="ServiceSAPDependency"/>
+      </type>
+      <type name="ManagementInterface"/>
+    </type>
+    <description>
+      <text>Models the communication point from 
+the AdapterServices to the AgentServices 
+by the ServiceAccessPoint tagged as ManagementInterface.</text>
+    </description>
+  </leaf-list>
+  <leaf name="AgentInterface">
+    <type name="uint16"/>
+    <description>
+      <text>Represents the interface provided by 
+the communication with the Agent.</text>
+    </description>
+  </leaf>
+  <leaf name="AgentProtocol">
+    <type name="uint16"/>
+    <description>
+      <text>Identifies the communication protocol 
+used to interact with a specific AgentService.</text>
+    </description>
+  </leaf>
+</submodule>

@@ -1,0 +1,122 @@
+submodule ietf-SDN{
+	yang-version "1.1";
+		belongs-to ietf-SystemIM {
+		prefix "SDNYang";
+	}
+
+	include ietf-ManagementService;
+	include ietf-ServiceAccessPoint;
+	include ietf-AppPlane;
+	include ietf-ControlPlane;
+	include ietf-DataPlane;
+	include ietf-MngtPlane;
+
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+
+	container SystemComponent {
+		leaf-list AppPlane_SDN {
+			type leafref {
+				path "/AppPlane";}
+			description "";
+			}
+		leaf-list ControlPlane_SDN {
+			type leafref {
+				path "/ControlPlane";}
+			description "";
+			}
+		leaf-list DataPlane_SDN {
+			type leafref {
+				path "/DataPlane";}
+			description "";
+			}
+		leaf-list MngtPlane_SDN {
+			type leafref {
+				path "/MngtPlane";}
+			description "";
+			}
+		description "";
+	}
+
+	container ServiceAffectsElement {
+		leaf FaultServicesEffect {
+			type leafref {
+				path "/ElementCapabilities/FaultService";
+			}
+			description "";
+		}
+		leaf ConfigurationServicesEffect {
+			type leafref {
+				path "/ElementCapabilities/ConfigurationService";
+			}
+			description "";
+		}
+		leaf AccountingServicesEffect {
+			type leafref {
+				path "/ElementCapabilities/AccountingService";
+			}
+			description "";
+		}
+		leaf PerformanceServicesEffect {
+			type leafref {
+				path "/ElementCapabilities/PerformanceService";
+			}
+			description "";
+		}
+		leaf SecurityServicesEffect {
+			type leafref {
+				path "/ElementCapabilities/SecurityService";
+			}
+			description "";
+		}
+		leaf ProgrammingServicesEffect {
+			type leafref {
+				path "/ElementCapabilities/ProgrammingService";
+			}
+			description "";
+		}
+		description "";
+	}
+
+	container SAPAvailableForElement {
+		leaf-list NetAppInterface {
+			type NetAppMI;
+			description "";
+		}
+		leaf-list NetInterASInterface {
+			type NetInterASMI;
+			description "";
+		}
+		leaf-list NetNOSInterface {
+			type NetNOSMI;
+			description "";
+		}
+		leaf-list NetSlicerInterface {
+			type NetSlicerMI;
+			description "";
+		}
+		leaf-list NetDevInterface {
+			type NetDevMI;
+			description "";
+		}
+		description "";
+	}
+}

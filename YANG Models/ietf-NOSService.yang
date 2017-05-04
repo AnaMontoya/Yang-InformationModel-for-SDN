@@ -1,0 +1,65 @@
+submodule ietf-NOSService {
+	yang-version 1.1;
+	belongs-to ietf-SystemIM {
+		prefix "NOSServYang";
+	}
+
+	include ietf-NOSServiceCapabilities;
+	include ietf-NOSServiceSettings;
+
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+
+	identity NOSService {
+		description "";
+	}
+	identity ApplicationService {
+		base NOSServYang:NOSService;
+		description "";
+	}
+	identity DistributingService {
+		base NOSServYang:NOSService;
+		description "";
+	}
+	identity ControlService {
+		base NOSServYang:NOSService;
+		description "";
+	}
+
+	leaf ElementCapabilities_NOSServ {
+		type leafref {
+			path "/nosServiceCapabilities";
+		}
+		description "";
+	}
+	leaf-list ElementSettingData_NOSServ {
+		type leafref {
+			path "/NOSConfParameters";
+		}
+		description "";
+	}
+	leaf-list ServiceServiceDependency {
+		type identityref {
+			base NOSService;
+		}
+		description "";
+	}
+}
