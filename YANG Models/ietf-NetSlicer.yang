@@ -18,11 +18,17 @@ submodule ietf-NetSlicer {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the System resource that split the 
+	network into isolated logical instances (e.g., FlowVisor for OpenFlow-based
+	networks)";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -31,24 +37,27 @@ submodule ietf-NetSlicer {
 
 	leaf-list netSlicer {
 		type string;
-		description "";
+		description "Represents an instance of itself";
 	}
 	leaf HostService_NetSlicerAgntServ {
 		type leafref {
 			path "/netSlicerAgentService";
 		}
-		description "";
+		description "Referred to the netSlicerAgentService node for representing the relationship 
+		with the NetSlicerAgentService submodule";
 	}
 	leaf HostService_SlicingServ {
 		type leafref {
 			path "/slicingService";
 		}
-		description "";
+		description "Referred to the slicingService node for representing the relationship with the 
+		Slicing Service submodule";
 	}
 	leaf HostService_DistribServ {
 		type leafref {
 			path "/distributingService";
 		}
-		description "";
+		description "Referred to the distributingService node for representing the relationship with the 
+		DistributingService submodule";
 	}
 }

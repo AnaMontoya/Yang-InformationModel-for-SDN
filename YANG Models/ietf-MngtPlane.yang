@@ -16,11 +16,16 @@ yang-version 1.1;
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+		
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents a Management plane to be managed belonging 
+	to a different Autonomous System";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -29,12 +34,14 @@ yang-version 1.1;
 
 	leaf InterASDomain{
 		type string;
-		description "";
-	}
+		description "Represents the domain from a different Autonomous System to which 
+		the Management Plane to be managed belongs";
+	} 
 	leaf-list MngtPlane{
 		type leafref{
 			path "/InterASDomain";
 		}
-		description "";
+		description "Represents an instance of the Management Plane related to the 
+		InterAS domain from another Autonomous System";
 	}
 }

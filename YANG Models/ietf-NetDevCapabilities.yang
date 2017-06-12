@@ -18,11 +18,16 @@ submodule ietf-NetDevCapabilities {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule for describing supported and excluded 
+	capabilities of a network device";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -31,20 +36,23 @@ submodule ietf-NetDevCapabilities {
 
 	leaf ElementCapabilities_NetDev {
 		type leafref {
-			path "/netDev";
+			path "/netDevs";
 		}
-		description "";
+		description "Referred to the netDev node to represent its 
+		relationship with NetDevs";
 	}
 	leaf-list SettingsDefineCapabilities_NetDevSt {
 		type leafref {
 			path "/NetDevConfParameters";
 		}
-		description "";
+		description "Referred to the NetDevConfParameters node to 
+		define the relationship with the NetDevResourceSettings submodule";
 	}
 	leaf-list SettingsDefineCapabilities_NetDevSvc {
 		type leafref {
 			path "/NetDevServParameters";
 		}
-		description "";
+		description "Referred to the NetDevServParameters node for 
+		representing the relationship with the NetDevCapabilities submodule";
 	}
 }

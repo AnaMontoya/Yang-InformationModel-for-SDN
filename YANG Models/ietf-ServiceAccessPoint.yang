@@ -14,11 +14,20 @@ submodule ietf-ServiceAccessPoint {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that describes the communication points 
+	between nodes in a data tree model for instancing communication
+	channels according to the interface required (e.g., a Performance
+	Service and a NetApp Adapter establish communication by the 
+	ServiceAccessPoint and the NetApp Adapter forwards notifications 
+	from a NetApp Agent to the Performance Service)";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -26,50 +35,67 @@ submodule ietf-ServiceAccessPoint {
 	}
 
 	identity ProvidesEndpoint{
-		description "";
+		description "General definition of ProvidesEndpoint for indicating
+		that the nodes related to this identity establish their own 
+		communication point to access from the other one";
+
 	}
 	identity ServiceSAPDependency{
-		description "";
+		description "General definition of ServiceSAPDependency for representing
+		that the nodes related to this identity use the ServiceAccessPoint to 
+		access the other one";
 	}
 	typedef AdapterInterface {
 		type string;
-		description "";
+		description " General representation of the interface used by the adapter by the 
+		ServiceAccessPoint, it communicates the Manager with the corresponding 
+		Adapter";
 	}
 	typedef ManagementInterface {
 		type string;
-		description "";
+		description "General representation of the interface used between the Adapter and
+		the Agent by the ServiceAccessPoint,";
 	}
 	typedef NorthboundInterface {
 		type string;
-		description "";
+		description "General representation of the interface that communicates the Application
+		Plane with the Control Plane and encompasses different NBIs (e.g., APIs based on REST)
+		and programming languages (e.g., Pyretic and Procera)";
 	}
 	typedef SouthboundInterface {
 		type string;
-		description "";
+		description "General representation of the interface that communicates the Control 
+		Plane and the Data Plane";
 	}
 	typedef East-WestboundInterface {
 		type string;
-		description "";
+		description "General representation of the interface that communicates elements in the
+		same Control Plane (e.g., communication between different NOS in the Control Plane)";
 	}
 	
 	typedef NetAppMI {
 		type ManagementInterface;
-		description "";
+		description "Represents the Management Interface that communicates Adapater and Agent from
+		the AppPlane to magane the NetApp elements";
 	}
 	typedef NetInterASMI {
 		type ManagementInterface;
-		description "";
+		description "Represents the Management Interface that communicates Adapater and Agent from
+		the ControlPlane to magane the NetInterAS elements";
 	}
 	typedef NetNOSMI {
 		type ManagementInterface;
-		description "";
+		description "Represents the Management Interface that communicates Adapater and Agent from
+		the ControlPlane to magane the NetNOS elements";
 	}
 	typedef NetSlicerMI {
 		type ManagementInterface;
-		description "";
+		description "Represents the Management Interface that communicates Adapater and Agent from
+		the ControlPlane to magane the NetSlicer elements";
 	}
 	typedef NetDevMI {
 		type ManagementInterface;
-		description "";
+		description "Represents the Management Interface that communicates Adapater and Agent from
+		the DataPlane to magane the NetDev elements";
 	}
 }

@@ -18,11 +18,16 @@ submodule ietf-NetAppAdapterService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the AdapterService
+		for the Network Application elements";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -33,7 +38,9 @@ submodule ietf-NetAppAdapterService {
 		type identityref {
 			base NetAppAdapterServices;
 		}
-		description "";
+		description "Inherits the defintion of AdapterService, 
+		it is related to the Adapter for the NetApps in the 
+		Application Plane";
 	}
 
 	leaf-list ProvidesEnpoint_NtAppAdptSrv{
@@ -43,7 +50,9 @@ submodule ietf-NetAppAdapterService {
 			}
 			type NetAppMI;
 		}
-		description "";
+		description "Relates the AdapterServices to the 
+		ManagementServices by the ServiceAccessPoint 
+		tagged as NetAppMI";
 	}
 
 	leaf-list ServiceSAPDependency_NtAppAdptSrv{
@@ -53,6 +62,8 @@ submodule ietf-NetAppAdapterService {
 			}
 			type NetAppMI;
 		}
-		description "";
+		description "Relates the AdapterServices to the 
+		ManagementServices by the ServiceAccessPoint 
+		tagged as NetAppMI";
 	}
 }

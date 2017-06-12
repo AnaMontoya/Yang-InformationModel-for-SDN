@@ -16,11 +16,18 @@ submodule ietf-NorthboundService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the communication with services 
+	exposed by a NOS (e.g., a NetApp that performs load-balancing and 
+	access-control functionality by retrieving and supplying data for tracking 
+	and firewall services deployed on the top of a NOS)";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -29,7 +36,7 @@ submodule ietf-NorthboundService {
 
 	leaf-list northboundService {
 		type string;
-		description "";
+		description "Represents an istance of itself";
 	}
 	leaf-list ServiceSAPDependency_NBS {
 		type union {
@@ -38,7 +45,9 @@ submodule ietf-NorthboundService {
 				}
 			type NorthboundInterface;
 			}
-		description "";
+		description "Models the communication point provided by the ServiceAccessPoint 
+		tagged as NorthboundInterface, reflects that the NorthboundService uses this 
+		communication point";
 	}
 	leaf-list ProvidesEndpoint_NBS {
 		type union{
@@ -47,7 +56,9 @@ submodule ietf-NorthboundService {
 				}
 			type NorthboundInterface;
 			}
-		description "";
+		description "Models the communication point provided by the ServiceAccessPoint 
+		tagged as NorthboundInterface, reflects that the NorthboundService uses this 
+		communication point";
 	}
 
 }

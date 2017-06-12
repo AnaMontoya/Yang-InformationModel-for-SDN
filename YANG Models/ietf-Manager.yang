@@ -16,11 +16,16 @@ submodule ietf-Manager {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the system hosting the Management
+	Services located in the Management Plane of SDN";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -29,13 +34,14 @@ submodule ietf-Manager {
 	
 	leaf manager {
 		type string;
-		description "";
+		description "Represents an instance of the manager system";
 	}
 	
 	leaf HostService_MngtServ{
 		type leafref{
 			path "/MngtServ";
 		}
-		description "";
+		description "Represents the relationship for indicating that 
+		the Manager describes the system hosting the SDN Management Services";
 	}
 }

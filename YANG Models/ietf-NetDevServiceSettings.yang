@@ -14,11 +14,16 @@ submodule ietf-NetDevServiceSettings {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the configuration parameters of
+	the NetDevs";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -27,6 +32,7 @@ submodule ietf-NetDevServiceSettings {
 
 	leaf-list NetDevServParameters {
 		type string;
-		description "";
+		description "Defines the parameters that follow the services offered by 
+		the NetDevs";
 	}
 }

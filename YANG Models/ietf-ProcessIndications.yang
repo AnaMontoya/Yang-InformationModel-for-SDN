@@ -14,11 +14,17 @@ submodule ietf-ProcessIndications {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodel that models notifications that may be sent by AgentServices 
+	informing about changes in SDN managed resources (e.g., an Agent dispatches a trap 
+	message that notifies a detected misconfiguration of its NetDev)";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -37,20 +43,20 @@ submodule ietf-ProcessIndications {
 		description "Unresquested messages with information about SDN managed resources";
 		leaf eventDescription {
 			type string;
-			description "";
+			description "Represents the space of description of the notification";
 		}
 		leaf reporting-entity {
 			type instance-identifier;
-			description "";
+			description "Defines an identifier for the notification";
 		}
 		leaf severity {
 			type string;
-			description "";
+			description "Defines the priority of the event that reports the notification";
 		}
 	}
 	leaf AgentID{
 		type string;
-		description "";
+		description "Defines an ID for identifying the Agent that sends the notification";
 	}
 }
 

@@ -16,12 +16,17 @@ submodule ietf-ApplicationService {
 		Daniela M. Casas
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
+		
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
 
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents services that expose functionality
+	to the Application Plane";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -32,9 +37,9 @@ submodule ietf-ApplicationService {
 		type identityref {
 			base ApplicationService;
 		}
-		description "";
+		description "Referred to its corresponding identity in the 
+		NOSService submodule for representing an instance of itself";
 	}
-
 	leaf-list ProvidesEndpoint_AppServ {
 		type union {
 			type identityref {
@@ -42,7 +47,8 @@ submodule ietf-ApplicationService {
 			}
 			type NorthboundInterface;
 		}
-		description "";
+		description "Represents the communication point with entities from the 
+		Application Plane by the NorthboundInterface";
 	}
 	leaf-list ServiceSAPDependency_AppServ {
 		type union {
@@ -51,6 +57,7 @@ submodule ietf-ApplicationService {
 			}
 			type NorthboundInterface;
 		}
-		description "";
+		description "Represents the communication point with entities from the 
+		Application Plane by the NorthboundInterface";
 	}
 }

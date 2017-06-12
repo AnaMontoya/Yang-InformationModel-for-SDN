@@ -16,11 +16,19 @@ submodule ietf-ManagementServiceCapabilities {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that describes both supported and 
+	excluded capabilities in ManagementServices, understanding 
+	capabilities as device features (e.g., a supported capability 
+	of Configuration Services is declared by the Management
+	Service that modifies the SBI communication of a NetDev)";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -32,40 +40,40 @@ submodule ietf-ManagementServiceCapabilities {
 			type leafref {
 				path "/ElementCapabilities/FaultService";
 			}
-			description "";
+			description "Service referred to the FaultService in the ManagementService";
 		}
 		leaf ConfigurationServices {
 			type leafref {
 				path "/ElementCapabilities/ConfigurationService";
 			}
-			description "";
+			description "Service referred to the ConfigurationService in the ManagementService";
 		}
 		leaf AccountingServices {
 			type leafref {
 				path "/ElementCapabilities/AccountingService";
 			}
-			description "";
+			description "Service referred to the AccountingService in the ManagementService";
 		}
 		leaf PerformanceServices {
 			type leafref {
 				path "/ElementCapabilities/PerformanceService";
 			}
-			description "";
+			description "Service referred to the PerformanceService in the ManagementService";
 		}
 		leaf SecurityServices {
 			type leafref {
 				path "/ElementCapabilities/SecurityService";
 			}
-			description "";
+			description "Service referred to the SecurityService in the ManagementService";
 		}
 		leaf ProgrammingServices {
 			type leafref {
 				path "/ElementCapabilities/ProgrammingService";
 			}
-			description "";
+			description "Service referred to the ProgrammingService in the ManagementService";
 		}
-		description "";
+		description "Represents the service that is choosen for an SDN 
+		management operation, each leaf is referred to the corresponding
+		service";
 	}
-
 }
-	

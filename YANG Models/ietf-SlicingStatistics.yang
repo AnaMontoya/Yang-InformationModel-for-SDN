@@ -15,11 +15,16 @@ submodule ietf-SlicingStatistics {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that models collections of
+metrics for instances of a SlicingService";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -30,17 +35,19 @@ submodule ietf-SlicingStatistics {
 		type leafref {
 			path "/Slices";
 		}
-		description "";
+		description "Referred to the Slices node for representing the relationship with 
+		the SlicingStatistics submodule";
 	}
 	leaf-list SlicingStatistics {
 		type identityref {
 			base SlicingStatistics;
 		}
-		description "";
+		description "referred to the SlicigStatistics identity for relating with the SlicingService 
+		submodule";
 	}
 	leaf TotalSlices {
 		type uint32;
-		description "";
+		description "Defines the total number of slices handled by a NetSlicer";
 	}
 
 }

@@ -17,11 +17,17 @@ submodule ietf-NetSlicerAgentService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodel that represents Agent running on the managed 
+	Network Slicer resources, models the management functions in accordance 
+	with the managed resources of the Control Plane";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -32,7 +38,7 @@ submodule ietf-NetSlicerAgentService {
 		type identityref {
 			base NetSlicerAgentServices;
 		}
-		description "";
+		description "Represents an istance of itself";
 	}
 
 	leaf-list ProvidesEnpoint_NtSlicerAgntSrv{
@@ -42,7 +48,8 @@ submodule ietf-NetSlicerAgentService {
 			}
 			type NetSlicerMI;
 		}
-		description "";
+		description "Models the communication point from NetSlicerAgentService to
+		NetSlicerAdapterService by the ServiceAccessPoint tagged as NetSlicerMI";
 	}
 
 	leaf-list ServiceSAPDependency_NtSlicerAgntSrv{
@@ -52,7 +59,8 @@ submodule ietf-NetSlicerAgentService {
 			}
 			type NetSlicerMI;
 		}
-		description "";
+		description "Models the communication point from NetSlicerAgentService to
+		NetSlicerAdapterService by the ServiceAccessPoint tagged as NetSlicerMI";
 
 	}
 }	

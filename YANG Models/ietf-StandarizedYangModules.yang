@@ -14,18 +14,23 @@ submodule ietf-StandarizedYangModules {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the accessing to well known YANG models 
+	that may be required during the modeling of a process or element in the network
+	(e.g., including in the current IM the ietf-yang-library.yang for monitoring 
+	information about the YANG modules and submodules that are used within a YANG-based server).";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
 		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
 	}
-
-
 	leaf-list KnownModules {
 		type string;
 		description "To reference relationship between the well-known YANG modules with ManagementService.";

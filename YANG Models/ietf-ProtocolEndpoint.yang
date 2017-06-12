@@ -16,11 +16,18 @@ submodule ietf-ProtocolEndpoint{
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the communication point allowing the 
+	access of Administrators to networks (e.g., a Configuration Service provides
+	an HTTP interface as an API to allow Network Administrators to set SBI 
+	parameters of NetDevs by a Web browser)";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -32,38 +39,39 @@ submodule ietf-ProtocolEndpoint{
 			type leafref {
 				path "/ElementCapabilities/FaultService";
 			}
-			description "";
+			description "Represents the User Interface for the Fault Service";
 		}
 		leaf Configuration_GUI {
 			type leafref {
 				path "/ElementCapabilities/ConfigurationService";
 			}
-			description "";
+			description "Represents the User Interface for the Configuration Service";
 		}
 		leaf Accounting_GUI {
 			type leafref {
 				path "/ElementCapabilities/AccountingService";
 			}
-			description "";
+			description "Represents the User Interface for the Accounting Service";
 		}
 		leaf Performance_GUI {
 			type leafref {
 				path "/ElementCapabilities/PerformanceService";
 			}
-			description "";
+			description "Represents the User Interface for the Performance Service";
 		}
 		leaf Security_GUI {
 			type leafref {
 				path "/ElementCapabilities/SecurityService";
 			}
-			description "";
+			description "Represents the User Interface for the Security Service";
 		}
 		leaf Programming_GUI {
 			type leafref {
 				path "/ElementCapabilities/ProgrammingService";
 			}
-			description "";
+			description "Represents the User Interface for the Programming Service";
 		}
-		description "";
+		description "Models User Interfaces per Management Service with a leaf 
+		per interface that may be chosen and used by the network administrator.";
 	}
 }

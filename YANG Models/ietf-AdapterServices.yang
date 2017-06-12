@@ -17,17 +17,20 @@ submodule ietf-AdapterServices {
 		Daniela M. Casas
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
+		
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
 
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "The aim of this submodule is modeling 
-	adapters that parse and forward requests, responses, 
-	and notifications between ManagementServices
-	and AgentServices by Management Interfaces (i.e., 
-	NetAppMI, NetSlicerMI 	and NetInterASMI) defined 
-	in the ServiceAccessPoint.";
+	description "Submodel that models adapters that parse
+	and forward requests, responses, and notifications between 
+	ManagementServices and AgentServices by Management Interfaces
+	(i.e., NetAppMI, NetSlicerMI and NetInterASMI) defined in the 
+	ServiceAccessPoint";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -45,29 +48,29 @@ submodule ietf-AdapterServices {
 		base "AdptServYang:AdapterService";
 		description "Inherits the defintion of AdapterService, 
 		it is related to the Adapter for the NetApps in the 
-		Application Plane.";
+		Application Plane";
 	}
 	identity NOSAdapterServices {
 		base "AdptServYang:AdapterService";
 		description "Inherits the defintion of AdapterService, 
-		it is related to the Adapter for the NOSs in the Control Plane.";
+		it is related to the Adapter for the NOSs in the Control Plane";
 		
 	}
 	identity NetSlicerAdapterServices {
 		base "AdptServYang:AdapterService";
 		description "Inherits the defintion of AdapterService, 
-		it is related to the Adapter for the Slicers in the Control Plane.";
+		it is related to the Adapter for the Slicers in the Control Plane";
 		
 	}
 	identity NetInterASAdapterServices {
 		base "AdptServYang:AdapterService";
 		description "Inherits the defintion of AdapterService, 
-		it is related to the Adapter for the NetInterAS in the Control Plane.";
+		it is related to the Adapter for the NetInterAS in the Control Plane";
 	}
 	identity NetDevAdapterServices {
 		base "AdptServYang:AdapterService";
 		description "Inherits the defintion of AdapterService, 
-		it is related to the Adapter for the NetDevs in the Data Plane.";
+		it is related to the Adapter for the NetDevs in the Data Plane";
 		
 	}
 	
@@ -77,7 +80,7 @@ submodule ietf-AdapterServices {
 		Adapter and Manager leaves referred to the adapter
 		leaf and manager leaf, respectively, for indicating 
 		that the AdapterServices may be hosted on the 
-		Manager or the Adapter.";
+		Manager or the Adapter";
 		leaf Manager {
 			type leafref {
 				path "/manager";

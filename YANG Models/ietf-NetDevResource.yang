@@ -6,7 +6,6 @@ submodule ietf-NetDevResource {
 
 	include ietf-StatisticalData;
 	include ietf-NetDevResourceSettings;
-	include ietf-StatisticalData;
 	
 	organization "University of Cauca";
 	contact 
@@ -18,12 +17,16 @@ submodule ietf-NetDevResource {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "This submodule models network elements 
-	composing a NetDev, like ports, queues, and tables";
+	description "Submodule that models network elements 	composing 
+	a NetDev, like ports, queues, and tables";
 
 	revision 2017-04-12 {
 		description "Initial revision.";

@@ -17,11 +17,16 @@ submodule ietf-ControlService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that handles the sending and receiving messages
+	between NetDevs and NetSlicers";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -32,7 +37,8 @@ submodule ietf-ControlService {
 		type identityref {
 			base ControlService;
 		}
-		description "";
+		description "Referred to its corresponding identity in the NOSService 
+		submodule";
 	}
 
 	leaf-list ProvidesEndpoint_CtrlServ {
@@ -42,7 +48,8 @@ submodule ietf-ControlService {
 			}
 			type SouthboundInterface;
 		}
-		description "";
+		description "Relationship that represents the communication point with entities 
+		from the Data Plane by the SouthboundInterface";
 	}
 	leaf-list ServiceSAPDependency_CtrlServ {
 		type union {
@@ -51,6 +58,7 @@ submodule ietf-ControlService {
 			}
 			type SouthboundInterface;
 		}
-		description "";
+		description "Relationship that represents the communication point with entities 
+		from the Data Plane by the SouthboundInterface";
 	}
 }

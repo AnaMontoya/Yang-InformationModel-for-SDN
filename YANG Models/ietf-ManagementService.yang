@@ -16,11 +16,18 @@ submodule ietf-ManagementService {
 		Daniela M. Casas
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
+
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+		
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the Management Services
+	(e.g., FCAPS+Programming) that allow carrying out different SDN
+	management functions in the Management Plane of SDN";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -29,7 +36,8 @@ submodule ietf-ManagementService {
 
 	leaf MngtServ{
 		type string;
-		description "";
+		description "Represents an instance of itself which allows 
+		establishing relationships with other nodes";
 	}
 
 	leaf-list ProvidesEndpoint_MngtServ{
@@ -39,7 +47,9 @@ submodule ietf-ManagementService {
 			}
 			type AdapterInterface;
 		}
-		description "";
+		description "Relationship for indicating that the nodes 
+		related establish their own communication point to access 
+		from the other one";
 	}
 
 	leaf-list ServiceSAPDependency_MngtServ{
@@ -49,41 +59,43 @@ submodule ietf-ManagementService {
 			}
 			type AdapterInterface;
 		}
-		description "";
+		description "Relationship for implying that both nodes related 
+		use the ServiceAccessPoint to access the other one";
 	}
 
 	leaf-list ToYangRepository {
 		type leafref {
 			path "/KnownModules";
 		}
-		description "";
+		description "Relationship that relates ManagementServices submodule
+		with StandarizedYANGModules submodule to consider well-known YANG modules";
 	}	
 
 	container ElementCapabilities {
-		description "";
+		description "Relationship representing the capabilities supported for Services.";
 		leaf FaultService {
 			type string;
-			description "";
+			description "Defines the supported and excluded capabilities for the FaultService";
 		}
 		leaf ConfigurationService {
 			type string;
-			description "";
+			description "Defines the supported and excluded capabilities for the ConfigurationService";
 		}
 		leaf AccountingService {
 			type string;
-			description "";
+			description "Defines the supported and excluded capabilities for the AccountingService";
 		}
 		leaf PerformanceService {
 			type string;
-			description "";
+			description "Defines the supported and excluded capabilities for the PerformanceService";
 		}
 		leaf SecurityService {
 			type string;
-			description "";
+			description "Defines the supported and excluded capabilities for the SecurityService";
 		}
 		leaf ProgrammingService {
 			type string;
-			description "";
+			description "Defines the supported and excluded capabilities for the ProgrammingService";
 		}
 	}
 }

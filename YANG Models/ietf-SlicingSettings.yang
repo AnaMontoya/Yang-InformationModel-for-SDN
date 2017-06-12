@@ -14,11 +14,15 @@ submodule ietf-SlicingSettings {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the configuration parameters";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -27,13 +31,11 @@ submodule ietf-SlicingSettings {
 
 	leaf-list SlicingConfParameters {
 		type string;
-		//config true;
-		description "";
+		description "Specifies the configuration parameters of the NerSlicers";
 	}
 
 	leaf MaxSlices{
 		type uint16;
-		description "";
+		description "Defines the max number of slices in the Control Plane";
 	}
-
 }

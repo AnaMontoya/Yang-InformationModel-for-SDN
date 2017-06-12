@@ -16,11 +16,16 @@ submodule ietf-SlicingCapabilities {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that describes the supported capabilities of 
+	the Slices";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -32,18 +37,18 @@ submodule ietf-SlicingCapabilities {
 			type leafref {
 				path "/Capabilities";
 			}
-			description "";
+			description "Defines the excluded capabilities for the Slices";
 		}
 		leaf-list Supported {
 			type leafref {
 				path "/Capabilities";
 			}
-			description "";
+			description "Defines the supported capabilities for the Slices";
 		}
-		description "";
+		description "Represents the relationship with the Slicing Service submodule";
 	}
 	leaf SupportedSlicing{
 		type string;
-		description "";
+		description "Indicates the different slicing methods defined by a NetSlicer";
 	}
 }

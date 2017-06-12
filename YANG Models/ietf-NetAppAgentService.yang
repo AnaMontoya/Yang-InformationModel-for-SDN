@@ -17,11 +17,16 @@ submodule ietf-NetAppAgentService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodel that represents Agent running on the managed 
+	Network Applications";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -32,7 +37,7 @@ submodule ietf-NetAppAgentService {
 		type identityref {
 			base NetAppAgentServices;
 		}
-		description "";
+		description "Represents an istance of itself";
 	}
 
 	leaf-list ProvidesEnpoint_NtAppAgntSrv{
@@ -42,7 +47,8 @@ submodule ietf-NetAppAgentService {
 			}
 			type NetAppMI;
 		}
-		description "";
+		description "Models the communication point from NetAppAgentService to
+		NetAppAdapterService by the ServiceAccessPoint tagged as NetAppMI";
 	}
 
 	leaf-list ServiceSAPDependency_NtAppAgntSrv{
@@ -52,6 +58,7 @@ submodule ietf-NetAppAgentService {
 			}
 			type NetAppMI;
 		}
-		description "";
+		description "Models the communication point from NetAppAgentService to
+		NetAppAdapterService by the ServiceAccessPoint tagged as NetAppMI";
 	}
 }

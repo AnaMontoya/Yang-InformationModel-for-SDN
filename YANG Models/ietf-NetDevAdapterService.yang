@@ -18,11 +18,15 @@ submodule ietf-NetDevAdapterService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "This submodule represents the AdapterService
+	description "Submodule that represents the AdapterService
 		for the Network Devices";
 
 	revision 2017-04-12 {
@@ -45,7 +49,7 @@ submodule ietf-NetDevAdapterService {
 			type NetDevMI;
 		}
 		description "Represents the relationship between ServiceAccessPoint
-		by the ProvidesEnpoint through the NetDev Management Interface";
+		by the ProvidesEnpoint through the NetDevMI";
 	}
 
 	leaf-list ServiceSAPDependency_NtDevAdptSrv {
@@ -56,6 +60,6 @@ submodule ietf-NetDevAdapterService {
 			type NetDevMI;
 		}
 		description "Represents the relationship to ietf-ServiceAccessPoint
-		by the ServiceSAPDependency through the NetDev Management Interface";
+		by the ServiceSAPDependency through the NetDevMI";
 	}
 }

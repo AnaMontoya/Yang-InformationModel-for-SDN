@@ -18,11 +18,16 @@ submodule ietf-NetSlicerAdapterService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the AdapterService
+		for the Network Slicer elements";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -33,7 +38,8 @@ submodule ietf-NetSlicerAdapterService {
 		type identityref {
 			base NetSlicerAdapterServices;
 		}
-		description "";
+		description "Inherits the defintion of AdapterService, 
+		it is related to the Adapter for the Slicers in the Control Plane";
 	}
 
 	leaf-list ProvidesEnpoint_NtSlicerAdptSrv{
@@ -43,7 +49,8 @@ submodule ietf-NetSlicerAdapterService {
 			}
 			type NetSlicerMI;
 		}
-		description "";
+		description "Represents the relationship between ServiceAccessPoint
+		by the ProvidesEnpoint through the NetDev NetSlicerMI";
 	}
 
 	leaf-list ServiceSAPDependency_NtSlicerAdptSrv{
@@ -53,6 +60,7 @@ submodule ietf-NetSlicerAdapterService {
 			}
 			type NetSlicerMI;
 		}
-		description "";
+		description "Represents the relationship between ServiceAccessPoint
+		by the ProvidesEnpoint through the NetDev NetSlicerMI";
 	}
 }

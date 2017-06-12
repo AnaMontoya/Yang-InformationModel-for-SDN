@@ -17,11 +17,16 @@ submodule ietf-SlicingService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the service in charge of 
+	splitting the networkfor representing an instance of itself into several slices";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -30,7 +35,7 @@ submodule ietf-SlicingService {
 
 	leaf-list slicingService {
 		type string;
-		description "";
+		description "Represents an instance of itself";
 	}
 
 	leaf-list ProvidesEndpoint_SlicingServ {
@@ -40,7 +45,8 @@ submodule ietf-SlicingService {
 				base ProvidesEndpoint;
 			}
 		}
-		description "";
+		description "Relationship that represents the communication point with entities from the Data Plane 
+		by the SouthboundInterface";
 	}
 	leaf-list ServiceSAPDependency_SlicingServ {
 		type union {
@@ -49,30 +55,27 @@ submodule ietf-SlicingService {
 				base ServiceSAPDependency;
 			}
 		}
-		description "";
+		description "Relationship that represents the communication point with entities from the Data Plane 
+		by the SouthboundInterface";
 	}
 	leaf-list Slices {
 		type string;
-		description "";
+		description "Declares the maximum number of concurrent slices supported by a NetSlicer";
 	}
 	leaf-list Capabilities {
 		type string;
-		description "";
+		description "Specifies the capabilities supported an excluded for NetSlicers";
 	}
 
 	leaf-list ElementSettingData_SlicingServ {
 		type leafref {
 			path "/SlicingConfParameters";
 		}
-		description "";
-	}
-	leaf SBIProtocol{
-		type uint16;
-		description "";
+		description "Referred to the SlicingConfParameters node for representing the relationship with the 
+		SlicingSettings submodule";
 	}
 	leaf CurrentSlices{
 		type uint16;
-		description "";
+		description "Reports the number of slices currently operated by a particular NetSlicer";
 	}
-
 }

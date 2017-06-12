@@ -16,12 +16,16 @@ submodule ietf-NetDevService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "This submodule is for representing 
-		network services hosted in network devices.";
+	description "Submodule for representing network services 
+	hosted in network devices";
 
 	revision 2017-04-12 {
 		description "Initial revision.";

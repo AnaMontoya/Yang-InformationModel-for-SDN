@@ -17,11 +17,16 @@ submodule ietf-NOSService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents network services hosted
+	in a NOS";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -29,37 +34,42 @@ submodule ietf-NOSService {
 	}
 
 	identity NOSService {
-		description "";
+		description "Inherits its nature to the ApplicationService, 
+		DistributingService and ControlService identities for representing 
+		the services offered by the NOS";
 	}
 	identity ApplicationService {
 		base NOSServYang:NOSService;
-		description "";
+		description "Represents the Aplication Services offered by the NOS";
 	}
 	identity DistributingService {
 		base NOSServYang:NOSService;
-		description "";
+		description "Represents the Distributing Services offered by the NOS";
 	}
 	identity ControlService {
 		base NOSServYang:NOSService;
-		description "";
+		description "Represents the Control Services offered by the NOS";
 	}
 
 	leaf ElementCapabilities_NOSServ {
 		type leafref {
 			path "/nosServiceCapabilities";
 		}
-		description "";
+		description "Referred to the nosServiceCapabilities node for representing 
+		the relationship with the NOSServiceCapabilities submodule";
 	}
 	leaf-list ElementSettingData_NOSServ {
 		type leafref {
 			path "/NOSConfParameters";
 		}
-		description "";
+		description "Referred to the NOSConfParameters node for describing the 
+		relationship with the NOSServiceSettings submodule";
 	}
 	leaf-list ServiceServiceDependency {
 		type identityref {
 			base NOSService;
 		}
-		description "";
+		description "Referred to the NOSService \textit{identity} for representing 
+		the relatinship with the NOSService itself";
 	}
 }

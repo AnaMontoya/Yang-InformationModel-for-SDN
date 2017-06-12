@@ -17,11 +17,16 @@ submodule ietf-DistributingService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that models the service that allows managing any distributed 
+	Control Plane";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -31,7 +36,8 @@ submodule ietf-DistributingService {
 		type identityref {
 			base DistributingService;
 		}
-		description "";
+		description "Referred to its corresponding identity in the NOSService 
+		submodule to represent an instance of itself";
 	}
 
 	leaf-list ProvidesEndpoint_DistribServ {
@@ -40,7 +46,8 @@ submodule ietf-DistributingService {
 				base ProvidesEndpoint;
 			}
 			type East-WestboundInterface;
-		}description "";
+		}description "Represents the communication point with other entities from the 
+		Control Plane by the East/WestboundInterface";
 	}
 	leaf-list ServiceSAPDependency_DistribServ {
 		type union {
@@ -49,6 +56,7 @@ submodule ietf-DistributingService {
 			}
 			type East-WestboundInterface;
 		}
-		description "";
+		description "Represents the communication point with other entities from the 
+		Control Plane by the East/WestboundInterface";
 	}
 }

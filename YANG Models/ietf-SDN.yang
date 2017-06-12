@@ -21,11 +21,18 @@ submodule ietf-SDN{
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the SDN network managed by 
+	the Management Plane, it is	composed by the following Planes: Application, Controll and Data 
+	Planes. It also considers a Management Plane that belongs to a different
+	autonomous system";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -36,24 +43,30 @@ submodule ietf-SDN{
 		leaf-list AppPlane_SDN {
 			type leafref {
 				path "/AppPlane";}
-			description "";
+			description "Represents the Application Plane that comform part of the 
+			SDN network and is managed by the Management Plane";
 			}
 		leaf-list ControlPlane_SDN {
 			type leafref {
 				path "/ControlPlane";}
-			description "";
+			description "Represents the Control Plane that comform part of the 
+			SDN network and is managed by the Management Plane";
 			}
 		leaf-list DataPlane_SDN {
 			type leafref {
 				path "/DataPlane";}
-			description "";
+			description "Represents the Data Plane that comform part of the 
+			SDN network and is managed by the Management Plane";
 			}
 		leaf-list MngtPlane_SDN {
 			type leafref {
 				path "/MngtPlane";}
-			description "";
+			description "Represents the Management Plane that comform part of the 
+			SDN network and is managed by the Management Plane";
 			}
-		description "";
+		description " Represents the relationships that connect tha SDN submodule
+		with the Planes of App, Control, Data and MAnagement indicating their
+		belonging to the SDN network";
 	}
 
 	container ServiceAffectsElement {
@@ -61,62 +74,78 @@ submodule ietf-SDN{
 			type leafref {
 				path "/ElementCapabilities/FaultService";
 			}
-			description "";
+			description "Represent the effect of executing a  task from the Fault 
+			service";
 		}
 		leaf ConfigurationServicesEffect {
 			type leafref {
 				path "/ElementCapabilities/ConfigurationService";
 			}
-			description "";
+			description "Represent the effect of executing a task from the Configuration
+			 service";
 		}
 		leaf AccountingServicesEffect {
 			type leafref {
 				path "/ElementCapabilities/AccountingService";
 			}
-			description "";
+			description "Represent the effect of executing a task from the Accounting 
+			service";
 		}
 		leaf PerformanceServicesEffect {
 			type leafref {
 				path "/ElementCapabilities/PerformanceService";
 			}
-			description "";
+			description "Represent the effect of executing a task from the Performance 
+			service";
 		}
 		leaf SecurityServicesEffect {
 			type leafref {
 				path "/ElementCapabilities/SecurityService";
 			}
-			description "";
+			description "Represent the effect of executing a task from the Security 
+			service";
 		}
 		leaf ProgrammingServicesEffect {
 			type leafref {
 				path "/ElementCapabilities/ProgrammingService";
 			}
-			description "";
+			description "Represent the effect of executing a task from the Programming
+			service";
 		}
-		description "";
+		description "Represents the relationship between SDN and Management 
+			Services and represents that all management services have an effect 
+			in the SDN network such as changing resource behavior and configuring 
+			SDN controllers to a set of OpenFlow-enabled switches";
 	}
 
 	container SAPAvailableForElement {
 		leaf-list NetAppInterface {
 			type NetAppMI;
-			description "";
+			description "Represents the Management Interface for the network applications in
+			the Application Plane";
 		}
 		leaf-list NetInterASInterface {
 			type NetInterASMI;
-			description "";
+			description "Represents the Management Interface for the Inter AS component in 
+			the Control Plane";
 		}
 		leaf-list NetNOSInterface {
 			type NetNOSMI;
-			description "";
+			description "Represents the Management Interface for the NOS in the Control 
+			Plane";
 		}
 		leaf-list NetSlicerInterface {
 			type NetSlicerMI;
-			description "";
+			description "Represents the Management Interface for the Network Devices in 
+			the Control Plane";
 		}
 		leaf-list NetDevInterface {
 			type NetDevMI;
-			description "";
+			description "Represents the Management Interface for the Network devices in 
+			the Data Plane";
 		}
-		description "";
+		description "Represents the relationship that communicates SDN with the 
+		Service Access Point by the management interfaces, it represents that 
+		these interfaces provide managing access for SDN";
 	}
 }

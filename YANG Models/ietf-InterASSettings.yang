@@ -16,11 +16,16 @@ submodule ietf-InterASSettings {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the configuration parameters 
+	of the Slicers";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -29,13 +34,13 @@ submodule ietf-InterASSettings {
 	
 	leaf-list InterASConfParameters{
 		type string;
-		//config true;
-		description "";
+		description "Defines the configuration parameter for the InterAS components";
 	}
 	leaf-list SettingsDefineCapabilities_InterAS{
 		type leafref {
 			path "/interASCapabilities";
 		}
-		description "";
+		description "Referred to the interASCapabilities node for representing the relationship with 
+		the InterASCapabilities submodule";
 	}
 }

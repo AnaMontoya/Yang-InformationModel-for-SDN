@@ -72,11 +72,18 @@ module ietf-SystemIM {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Module that includes all the submodules that characterizes the entire SDN architecture
+	and describe a Management Plane to support management tasks over the network. The collections of the submodules
+	corresponds to a protocol-agnostic Information Model that supports technology heterogeneity and inter-domain
+	communication";
 
 	revision 2017-04-12 {
 		description "Initial revision.";

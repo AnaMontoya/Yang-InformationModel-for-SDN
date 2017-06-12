@@ -15,11 +15,17 @@ yang-version 1.1;
 		Daniela M. Casas
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
+
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+		
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that represents the Data plane to 
+	be managed by the Management Plane";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -28,21 +34,25 @@ yang-version 1.1;
 
 	leaf NetworkDomain{
 		type string;
-		description "";
+		description "Represents the domain to which the Data
+		Plane to be managed belongs";
 	}
 	leaf-list DataPlane{
 		type leafref{
 			path "/NetworkDomain";
 		}
-		description "";
+		description "Represents an instance of the Data Plane 
+		related to the Network domain";
 	}
 	container SystemComponent_DtPlane{
-		description "";
+		description "Relationship that describes that the DataPlane 
+		is formed by one or more NetDevs";
 		leaf-list DataPlane_NetDev{
 			type leafref{
 				path "/netDev";
 			}
-			description "";
+			description "Represents new instances of NetDevs that may
+			 be added to the Data Plane";
 		}
 	}
 

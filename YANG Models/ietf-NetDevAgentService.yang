@@ -17,12 +17,16 @@ submodule ietf-NetDevAgentService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "This submodule represents the AgentService
-		for the Network Devices";
+	description "Submodule that represents the Agent running on the 
+		the managerd Network Devices";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -33,7 +37,12 @@ submodule ietf-NetDevAgentService {
 		type identityref {
 			base NetDevAgentServices;
 		}
-		description "";
+		description "Represents an istance of itself";
+	}
+
+	leaf netDevAgentPort{
+		type uint16;
+		description "Specifies the communication port that the Agent uses";
 	}
 
 	leaf-list ProvidesEnpoint_NtADevAgntSrv {
@@ -43,8 +52,8 @@ submodule ietf-NetDevAgentService {
 			}
 			type NetDevMI;
 		}
-		description "Represents the relationship to ietf-ServiceAccessPoint
-		by the ProvidesEnpoint through the NetDev Management Interface";
+		description "Models the communication point from NetDevAgentService to
+		NetDevdapterService by the ServiceAccessPoint tagged as NetDevMI";
 	}
 
 	leaf-list ServiceSAPDependency_NtDevAgntSrv {
@@ -54,7 +63,7 @@ submodule ietf-NetDevAgentService {
 			}
 			type NetDevMI;
 		}
-		description "Represents the relationship to ietf-ServiceAccessPoint
-		by the ServiceSAPDependency through the NetDev Management Interface";
+		description "Models the communication point from NetDevAgentService to
+		NetDevdapterService by the ServiceAccessPoint tagged as NetDevMI";
 	}
 }

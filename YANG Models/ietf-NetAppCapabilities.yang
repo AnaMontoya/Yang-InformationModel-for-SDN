@@ -17,11 +17,16 @@ submodule ietf-NetAppCapabilities{
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule for modeling the supported and excluded capabilities 
+	of network applications";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -32,13 +37,14 @@ submodule ietf-NetAppCapabilities{
 		type leafref {
 			path "/netApp";
 		}
-		description "";
+		description "Referred to the netApp node for representing the relationship 
+		between NetAppCapabilities and NetApp submodules";
 	}
 	leaf-list SettingsDefineCapabilities_NetApp {
 		type leafref {
 			path "/NetAppConfParameters";
 		}
-		description "";
+		description "Referred to the NetAppConfParameters node for representing the 
+		relationship with the NetAppSettings submodule";
 	}
-
 }

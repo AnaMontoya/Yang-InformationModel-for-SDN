@@ -16,11 +16,18 @@ submodule ietf-Server{
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that models the NetApps running on remote
+	servers where such remote NetApps prefer NBIs based on protocols 
+	for communicating with the Control Plane than NBIs based on NOS native 
+	bundles";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -31,6 +38,7 @@ submodule ietf-Server{
 		type leafref{
 			path "/netApp";
 		}
-		description "";
+		description "Represents the relationship between the NetApp and the 
+		Server models NetApps running on remote servers";
 	}
 }

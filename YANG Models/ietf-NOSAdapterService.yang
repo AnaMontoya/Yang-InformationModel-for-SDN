@@ -18,11 +18,16 @@ submodule ietf-NOSAdapterService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodel that represents the Adapter to communicate
+	with the managed NOS from the Management Plane";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -33,7 +38,8 @@ submodule ietf-NOSAdapterService {
 		type identityref {
 			base NOSAdapterServices;
 		}
-		description "";
+		description "Inherits the defintion of AdapterService, 
+		it is related to the Adapter for the NOSs in the Control Plane";
 	}
 
 	leaf-list ProvidesEnpoint_NOSAdptSrv{
@@ -43,7 +49,9 @@ submodule ietf-NOSAdapterService {
 			}
 			type NetNOSMI;
 		}
-		description "";
+		description "Relates the AdapterServices to the 
+		ManagementServices by the ServiceAccessPoint 
+		tagged as NetNOSMI";
 	}
 
 	leaf-list ServiceSAPDependency_NOSAAdptSrv{
@@ -53,6 +61,8 @@ submodule ietf-NOSAdapterService {
 			}
 			type NetNOSMI;
 		}
-		description "";
+		description "Relates the AdapterServices to the 
+		ManagementServices by the ServiceAccessPoint 
+		tagged as NetNOSMI";
 	}
 }

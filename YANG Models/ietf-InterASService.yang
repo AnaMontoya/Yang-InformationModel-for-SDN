@@ -6,6 +6,7 @@ submodule ietf-InterASService {
 
 	include ietf-ServiceAccessPoint;
 	include ietf-InterASSettings;
+	include ietf-InterASCapabilities;
 
 	organization "University of Cauca";
 	contact 
@@ -17,11 +18,16 @@ submodule ietf-InterASService {
 		Phone: +57 317 777 7225
 		Email: danielacasas_@ieee.org
 
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
 		University of Cauca 
 		Calle 5 #4-70 Popayán, Cauca
 		Colombia";
 
-	description "";
+	description "Submodule that models the service that allows managing
+communication between different network domains";
 
 	revision 2017-04-12 {
 		description "Initial revision.";
@@ -32,11 +38,12 @@ submodule ietf-InterASService {
 		type leafref{
 			path "/InterASConfParameters";
 		}
-		description "";
+		description "Referred to the InterASConfParameters node for representing the 
+		relationship with the InterASSettings";
 	}
 	leaf-list interASService{
 		type string;
-		description "";
+		description "Represents an instance of itself";
 	} 
 	leaf-list ProvidesEndpoint_InterASServ{
 		type union{
@@ -45,7 +52,8 @@ submodule ietf-InterASService {
 				base ProvidesEndpoint;
 			}
 		}
-		description "";
+		description "Relationship that represents the communication point with other elements 
+		located in the Data Plane";
 	}
 	leaf-list ServiceSAPDependency_InterASServ{
 		type union{
@@ -54,6 +62,14 @@ submodule ietf-InterASService {
 				base ServiceSAPDependency;
 			}
 		}
-		description "";
+		description "Relationship that represents the communication point with other elements 
+		located in the Data Plane";
+	}
+	leaf-list ElementCapabilities_InterASCap {
+		type leafref{
+			path "/interASCapabilities";
+		}
+		description "referred to the interASCapabilities node for representing the relationship 
+		with the InterASCapabilities";
 	}
 }
