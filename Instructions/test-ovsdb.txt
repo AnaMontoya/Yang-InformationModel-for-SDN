@@ -1,0 +1,61 @@
+#===========================================================================
+# MANAGER (192.168.0.12)
+#===========================================================================
+#---------------------------------------------------------------------------
+# OVSDB commands
+#---------------------------------------------------------------------------
+# Show overview of topology in 192.168.0.13:6640
+sudo ovs-vsctl --db=tcp:192.168.0.13:6640 show
+# Modify the controller for a switch in 192.168.0.13:6640
+sudo ovs-vsctl --db=tcp:192.168.0.13:6640 set-controller sX tcp:192.168.56.17:6633
+sudo ovs-vsctl --db=tcp:192.168.0.13:6640 set-controller sX tcp:192.168.56.16:6653
+#---------------------------------------------------------------------------
+# Script
+#---------------------------------------------------------------------------
+# 1. Modify the controller for a set of switches
+#   1.2 Run the bash file as root
+#       sudo ./ovsdb-tool_set-controller.sh
+
+# Database=tcp:192.168.0.13:6640 + Interface=enp0s4
+#   Switches=[s1] + Output=1.csv
+#       Controller=tcp:192.168.56.17:6633 (opendaylight)
+            sudo ./ovsdb-tool_set-controller.sh -d tcp:192.168.0.13:6640 -i enp0s4 -r 1:1 -o 1.csv -c tcp:192.168.56.17:6633
+#       Controller=tcp:192.168.56.16:6653 (ryu)
+            sudo ./ovsdb-tool_set-controller.sh -d tcp:192.168.0.13:6640 -i enp0s4 -r 1:1 -o 1.csv -c tcp:192.168.56.16:6653
+#   Switches=[s1...s10] + Output=10.csv
+#       Controller=tcp:192.168.56.17:6633 (opendaylight)
+            sudo ./ovsdb-tool_set-controller.sh -d tcp:192.168.0.13:6640 -i enp0s4 -r 1:10 -o 10.csv -c tcp:192.168.56.17:6633
+#       Controller=tcp:192.168.56.16:6653 (ryu)
+            sudo ./ovsdb-tool_set-controller.sh -d tcp:192.168.0.13:6640 -i enp0s4 -r 1:10 -o 10.csv -c tcp:192.168.56.16:6653
+#   Switches=[s1...s25] + Output=25.csv
+#       Controller=tcp:192.168.56.17:6633 (opendaylight)
+            sudo ./ovsdb-tool_set-controller.sh -d tcp:192.168.0.13:6640 -i enp0s4 -r 1:25 -o 25.csv -c tcp:192.168.56.17:6633
+#       Controller=tcp:192.168.56.16:6653 (ryu)
+            sudo ./ovsdb-tool_set-controller.sh -d tcp:192.168.0.13:6640 -i enp0s4 -r 1:25 -o 25.csv -c tcp:192.168.56.16:6653
+#   Switches=[s1...s50] + Output=50.csv
+#       Controller=tcp:192.168.56.17:6633 (opendaylight)
+            sudo ./ovsdb-tool_set-controller.sh -d tcp:192.168.0.13:6640 -i enp0s4 -r 1:50 -o 50.csv -c tcp:192.168.56.17:6633
+#       Controller=tcp:192.168.56.16:6653 (ryu)
+            sudo ./ovsdb-tool_set-controller.sh -d tcp:192.168.0.13:6640 -i enp0s4 -r 1:50 -o 50.csv -c tcp:192.168.56.16:6653
+#   Switches=[s1...s75] + Output=75.csv
+#       Controller=tcp:192.168.56.17:6633 (opendaylight)
+            sudo ./ovsdb-tool_set-controller.sh -d tcp:192.168.0.13:6640 -i enp0s4 -r 1:75 -o 75.csv -c tcp:192.168.56.17:6633
+#       Controller=tcp:192.168.56.16:6653 (ryu)
+            sudo ./ovsdb-tool_set-controller.sh -d tcp:192.168.0.13:6640 -i enp0s4 -r 1:75 -o 75.csv -c tcp:192.168.56.16:6653
+#   Switches=[s1...s100] + Output=100.csv
+#       Controller=tcp:192.168.56.17:6633 (opendaylight)
+            sudo ./ovsdb-tool_set-controller.sh -d tcp:192.168.0.13:6640 -i enp0s4 -r 1:100 -o 100.csv -c tcp:192.168.56.17:6633
+#       Controller=tcp:192.168.56.16:6653 (ryu)
+            sudo ./ovsdb-tool_set-controller.sh -d tcp:192.168.0.13:6640 -i enp0s4 -r 1:100 -o 100.csv -c tcp:192.168.56.16:6653
+
+#---------------------------------------------------------------------------
+#===========================================================================
+# VM1 - OVSDB (192.168.0.13)
+#===========================================================================
+# Set OVSDB Manager Listener
+#---------------------------------------------------------------------------
+# Set OVSDB manager listener on port 6640
+sudo ovs-vsctl set-manager ptcp:6640
+#---------------------------------------------------------------------------
+============================================================================
+

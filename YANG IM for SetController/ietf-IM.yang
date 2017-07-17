@@ -1,0 +1,404 @@
+module ietf-IM {
+	yang-version "1.1";
+	namespace "urn:ietf:params:xml:ns:yang:ietf-IM";
+	prefix "IMYang";
+	
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "This submodule contains all the representations of the SDN network that 
+	are representative for the evaluation of this module in an environment that 
+	requires to configure a SetController operation for a netDevs provided by different
+	vendors.";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+		
+	}
+
+//MngtPlane---------------------------------------------
+//include ietf-Manager; 
+	leaf manager {
+		type string;
+		description "Represents an instance of the manager system";
+	}
+	
+//include ietf-Adapter;  
+	leaf adapter {
+			type string;
+			description "Represents an instance of the adapter system";
+		}
+//include ietf-AgentServices; 
+	identity AgentService {
+		description "The AgentService represents an Agent running on SDN managed
+		resources, such as NetDev, NetSlicer, NOS and NetApp.";
+	}
+	identity NetDevAgentServices {
+		base "IMYang:AgentService";
+		description "Inherits the defintion of AgentService, it is related to 
+		the Agent for the NetDevs in the Data Plane.";
+	}
+//include ietf-AdapterServices; 
+	identity AdapterService {
+		description "The AdapterService models an Adapter
+		in charge of parsing and forwarding request, 
+		response, and notifications between the 
+		ManagementService and the AgentService.";
+	}
+	identity NetDevAdapterServices {
+		base "IMYang:AdapterService";
+		description "Inherits the defintion of AdapterService, 
+		it is related to the Adapter for the NetDevs in the Data Plane.";
+		
+	}
+//include ietf-ManagementService; 
+	container ElementCapabilities {
+		description "Relationship representing the capabilities supported for Services.";
+		leaf FaultService {
+			type string;
+			description "Defines the supported and excluded capabilities for the FaultService";
+		}
+		leaf ConfigurationService {
+			type string;
+			description "Defines the supported and excluded capabilities for the ConfigurationService";
+		}
+		leaf AccountingService {
+			type string;
+			description "Defines the supported and excluded capabilities for the AccountingService";
+		}
+		leaf PerformanceService {
+			type string;
+			description "Defines the supported and excluded capabilities for the PerformanceService";
+		}
+		leaf SecurityService {
+			type string;
+			description "Defines the supported and excluded capabilities for the SecurityService";
+		}
+		leaf ProgrammingService {
+			type string;
+			description "Defines the supported and excluded capabilities for the ProgrammingService";
+		}
+	}
+	choice HostedService {
+		description "Represents the relationship between 
+		AdapterServices and	its hosting system, holds the 
+		Adapter and Manager leaves referred to the adapter
+		leaf and manager leaf, respectively, for indicating 
+		that the AdapterServices may be hosted on the 
+		Manager or the Adapter.";
+		leaf Manager {
+			type leafref {
+				path "/manager";
+			}
+			description "Represents the system hosting the 
+			Management Services (e.g., a Configuration Service 
+			may be carried out as a Web application running on 
+			a Manager that may be either an Apache Tomcat or a 
+			GlassFish Server). It is referred to the representing 
+			leaf of the manager in the Manager submodule.";
+		}
+		leaf Adapter {
+			type leafref {
+				path "/adapter";
+			}
+			description "Represents a system that may host the 
+			AdapterService. It is referred to the representing 
+			leaf of the adapter in the Adapter submodule.";
+		}
+	}
+
+//include ietf-ManagementServiceCapabilities; 
+	choice Services {
+		leaf FaultServices {
+			type leafref {
+				path "/ElementCapabilities/FaultService";
+			}
+			description "Service referred to the FaultService in the ManagementService";
+		}
+		leaf ConfigurationServices {
+			type leafref {
+				path "/ElementCapabilities/ConfigurationService";
+			}
+			description "Service referred to the ConfigurationService in the ManagementService";
+		}
+		leaf AccountingServices {
+			type leafref {
+				path "/ElementCapabilities/AccountingService";
+			}
+			description "Service referred to the AccountingService in the ManagementService";
+		}
+		leaf PerformanceServices {
+			type leafref {
+				path "/ElementCapabilities/PerformanceService";
+			}
+			description "Service referred to the PerformanceService in the ManagementService";
+		}
+		leaf SecurityServices {
+			type leafref {
+				path "/ElementCapabilities/SecurityService";
+			}
+			description "Service referred to the SecurityService in the ManagementService";
+		}
+		leaf ProgrammingServices {
+			type leafref {
+				path "/ElementCapabilities/ProgrammingService";
+			}
+			description "Service referred to the ProgrammingService in the ManagementService";
+		}
+		description "Represents the service that is choosen for an SDN 
+		management operation, each leaf is referred to the corresponding
+		service";
+	}
+//include ietf-ProtocolEndpoint;
+	choice ProvidesEndpoint_ProEndpoint{
+		leaf Configuration_GUI {
+			type leafref {
+				path "/ElementCapabilities/ConfigurationService";
+			}
+			description "Represents the User Interface for the Configuration Service";
+		}
+		leaf Accounting_GUI {
+			type leafref {
+				path "/ElementCapabilities/AccountingService";
+			}
+			description "Represents the User Interface for the Accounting Service";
+		}
+		leaf Performance_GUI {
+			type leafref {
+				path "/ElementCapabilities/PerformanceService";
+			}
+			description "Represents the User Interface for the Performance Service";
+		}
+		leaf Security_GUI {
+			type leafref {
+				path "/ElementCapabilities/SecurityService";
+			}
+			description "Represents the User Interface for the Security Service";
+		}
+		leaf Programming_GUI {
+			type leafref {
+				path "/ElementCapabilities/ProgrammingService";
+			}
+			description "Represents the User Interface for the Programming Service";
+		}
+		description "Models User Interfaces per Management Service with a leaf 
+		per interface that may be chosen and used by the network administrator.";
+	}	
+//include ietf-ServiceAccessPoint; 
+	typedef SouthboundInterface {
+		type string;
+		description "General representation of the interface that communicates the Control 
+		Plane and the Data Plane";
+	}
+	typedef ManagementInterface {
+		type string;
+		description "General representation of the interface used between the Adapter and
+		the Agent by the ServiceAccessPoint,";
+	}
+	typedef NetDevMI {
+		type ManagementInterface;
+		description "Represents the Management Interface that communicates Adapater and Agent from
+		the DataPlane to magane the NetDev elements";
+	}
+
+//include ietf-SDN; 
+	container SystemComponent {
+		leaf-list AppPlane_SDN {
+			type leafref {
+				path "/AppPlane";}
+			description "Represents the Application Plane that comform part of the 
+			SDN network and is managed by the Management Plane";
+			}
+		leaf-list ControlPlane_SDN {
+			type leafref {
+				path "/ControlPlane";}
+			description "Represents the Control Plane that comform part of the 
+			SDN network and is managed by the Management Plane";
+			}
+		leaf-list DataPlane_SDN {
+			type leafref {
+				path "/DataPlane";}
+			description "Represents the Data Plane that comform part of the 
+			SDN network and is managed by the Management Plane";
+			}
+		leaf-list MngtPlane_SDN {
+			type leafref {
+				path "/MngtPlane";}
+			description "Represents the Management Plane that comform part of the 
+			SDN network and is managed by the Management Plane";
+			}
+		description " Represents the relationships that connect tha SDN submodule
+		with the Planes of App, Control, Data and MAnagement indicating their
+		belonging to the SDN network";
+	}
+
+	container ServiceAffectsElement {
+		leaf ConfigurationServicesEffect {
+			type leafref {
+				path "/ElementCapabilities/ConfigurationService";
+			}
+			description "Represent the effect of executing a task from the Configuration
+			service";
+		}
+		description "Represents the relationship between SDN and Management 
+			Services and represents that all management services have an effect 
+			in the SDN network such as changing resource behavior and configuring 
+			SDN controllers to a set of OpenFlow-enabled switches";
+	}
+	container SAPAvailableForElement {
+		leaf-list NetAppInterface {
+			type NetAppMI;
+			description "Represents the Management Interface for the network applications in
+			the Application Plane";
+		}
+		description "Represents the relationship that communicates SDN with the 
+		Service Access Point by the management interfaces, it represents that 
+		these interfaces provide managing access for SDN";
+	}
+
+ //AppPlane---------------------------------------------
+
+//include ietf-NOS; 
+	leaf-list Nos {
+		type string;
+		description "Represents an instance of itself";
+	}
+
+//include ietf-AppPlane; 
+	leaf NetAppDomain {
+		type string;
+		description "Represents the domain to which the Application
+		Plane to be managed belongs";
+	}
+	leaf AppPlane {
+		type leafref {
+			path "/NetAppDomain";
+		}
+		description "Represents an instance of the Application Plane 
+		related to the NetApp domain";
+	}
+
+//include ietf-ControlPlane; 
+	leaf NetControlDomain{
+		type string;
+		description "Represents the domain to which the Control
+		Plane to be managed belongs";
+	}
+	leaf-list ControlPlane{
+		type leafref{
+			path "/NetControlDomain";
+		}
+		description "Represents an instance of the Application Plane 
+		related to the NetControl domain";
+	}
+	container SystemComponent_CtrlPlane {
+		description "Relationship that describes that the ControlPlane 
+		is formed by one or more NOSs, NetSlicers, and InterASs";
+		leaf-list NOS_CtrlPlane {
+			type leafref {
+				path "/Nos";
+			}
+			description "Represents new instances of NOS that may
+			 be added to the Control Plane";
+		}
+	}
+//include ietf-DataPlane; 
+	leaf NetworkDomain{
+		type string;
+		description "Represents the domain to which the Data
+		Plane to be managed belongs";
+	}
+	leaf-list DataPlane{
+		type leafref{
+			path "/NetworkDomain";
+		}
+		description "Represents an instance of the Data Plane 
+		related to the Network domain";
+	}
+//include ietf-MngtPlane;  
+	leaf InterASDomain{
+		type string;
+		description "Represents the domain from a different Autonomous System to which 
+		the Management Plane to be managed belongs";
+	} 
+	leaf-list MngtPlane{
+		type leafref{
+			path "/InterASDomain";
+		}
+		description "Represents an instance of the Management Plane related to the 
+		InterAS domain from another Autonomous System";
+	}
+	
+//-----------NetDev------------------------
+//include ietf-NetDev; 
+	leaf-list netDevs {
+		type string;
+		description "IP from netDevs switches";
+	}
+	leaf HostService_NetDevAgntServ {
+		type leafref {
+			path "/netDevAgentService";
+		}
+		description "Defines the relationship between the NetDevService 
+		and the NetDev representing network services hosted in network devices";
+	} 
+	leaf-list SAPAvailableForElement_NetDev {
+		type SouthboundInterface;
+		description "Represents the relationship between the ServicesAccessPoint and the NetDev 
+		reflects the access from the Control Plane to the NetDevs in order to manage its 
+		components by the southbound interfaces defined in such ServiceAccessPoint";
+	}
+
+//include ietf-NetDevAgentService; 
+	leaf-list netDevAgentService {
+		type identityref {
+			base NetDevAgentServices;
+		}
+		description "Represents an istance of itself";
+	}
+//include ietf-NetDevAdapterService; 
+	leaf-list netDevAdapterService {
+		type identityref {
+			base NetDevAdapterServices;
+		}
+		description "A representation of the Adapter for NetDevs itself.";
+	}
+
+//include ietf-SouthboundService; 
+	leaf-list SBIProtocol {
+		type uint16;
+		description "The property SBIProtocol may specify that the southbound 
+		communication uses the OpenFlow protocol, which defines a Secure 
+		Channel in switches for communicating with external controllers and 
+		updating internal flow tables.";
+	}
+
+//include ietf-StatisticalData; 
+	identity StatisticalData {
+		description "Instance to define arbitrary collections of statistical information applicable to instances of the NetDevResource";
+	}
+	identity SlicingStatistics {
+		base IMYang:StatisticalData;
+		description "Collections of metrics suitable to instances of the SlicingService.";
+	}
+	leaf-list Statistics_NetDevRsrc {
+		type string;
+		description "Defines rederence for relationship to NetDevResource";
+	}		
+}

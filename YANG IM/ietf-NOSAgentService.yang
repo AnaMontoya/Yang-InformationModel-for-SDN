@@ -1,0 +1,65 @@
+submodule ietf-NOSAgentService {
+	yang-version 1.1;
+	belongs-to ietf-SystemIM {
+		prefix "NOSAgntServYang";
+	}
+
+	include ietf-AgentServices;
+	include ietf-ServiceAccessPoint;
+	
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "Submodel that represents Agent running on the managed 
+	Network Slicers";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+
+
+	leaf-list nosAgentService {
+		type identityref {
+			base NOSAgentServices;
+		}
+		description "Represents an istance of itself";
+	}
+
+	leaf-list ProvidesEnpoint_NOSAgntSrv {
+		type union {
+			type identityref {
+				base ProvidesEndpoint;
+			}
+			type NetNOSMI;
+		}
+		description "Models the communication point from NOSAgentService to
+		NOSAdapterService by the ServiceAccessPoint tagged as NetNOSMI";
+	}
+
+	leaf-list ServiceSAPDependency_NOSAgntSrv {
+		type union {
+			type identityref {
+				base ServiceSAPDependency;
+			}
+			type NetNOSMI;
+		}
+		description "Models the communication point from NOSAgentService to
+		NOSAdapterService by the ServiceAccessPoint tagged as NetNOSMI";
+	}
+}

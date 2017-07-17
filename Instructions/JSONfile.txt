@@ -1,0 +1,23 @@
+=================================================
+JSON file IM.json
+=================================================
+#Install pyang in ubuntu
+sudo apt-get install python-setuptools
+git clone https://github.com/mbj4668/pyang
+cd pyang
+sudo python setup.py install
+
+#Obtain XML from ietf-IM.yang
+pyang -f sample-xml-skeleton -o IM.jxml ietf-IM.yang --sample-xml-skeleton-defaults --sample-xml-skeleton-annotations
+
+#Obtain XSL from ietf-IM.yang
+pyang -f jsonxsl -o IM.xsl ietf-IM.yang
+
+#Obtain Json file from XSL and XML files
+xsltproc -o IM.json IM.xsl IM.xml
+
+#Function to obtain a value of JSON file from a BASH script
+variable=´cat IM.json | grep Manager | cut -d'"' -f4'
+
+#Command to five permissions to execute a BASH script
+chmod +x script_name.sh

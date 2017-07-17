@@ -1,0 +1,58 @@
+{
+  "ietf-IM:manager": "OF-CONFIG Server",
+  "ietf-IM:HostService_MngtServ": "Accio Manager",
+  "ietf-IM:MngtServ": "Configuration Service Task",
+  "ietf-IM:ElementCapabilities": {
+    "FaultService": "",
+    "ConfigurationService": "SetController",
+    "AccountingService": "",
+    "PerformanceService": "",
+    "SecurityService": "",
+    "ProgrammingService": ""
+  },
+  "FaultServices": "",
+  "ConfigurationServices": "SetController Capabilities",
+  "AccountingServices": "",
+  "PerformanceServices": "",
+  "SecurityServices": "",
+  "ProgrammingServices": "",
+  "Fault_GUI": "",
+  "Configuration_GUI": "Accio YANG Tool",
+  "Accounting_GUI": "",
+  "Performance_GUI": "",
+  "Security_GUI": "",
+  "Programming_GUI": "",
+
+  "ietf-IM:NetAppDomain": "Shell Script Ubuntu",
+  "ietf-IM:AppPlane": "CLI",
+  "ietf-IM:NetControlDomain": "Server Cluster",
+  "ietf-IM:ControlPlane": ["Controllers"],
+  "ietf-IM:NetworkDomain": "Forwarding Devices",
+  "ietf-IM:DataPlane": ["OpenFlow Switches"],
+  "ietf-IM:InterASDomain": "Inter-domain Networks",
+  "ietf-IM:MngtPlane": ["Remote Management Plane"],
+
+  "ietf-IM:SystemComponent": {
+    "AppPlane_SDN": ["Bash Tools"],
+    "ControlPlane_SDN": ["RYU,ODL"],
+    "DataPlane_SDN": ["OVS/OF-CONFIG Switches"],
+    "MngtPlane_SDN": ["ASn"]
+  },
+  "ietf-IM:ServiceAffectsElement": {
+    "ConfigurationServicesEffect": "SetController Result"},
+
+  "ietf-IM:SAPAvailableForElement": {
+    "NetDevInterface": ["enp0s8"]
+  },
+  "ietf-IM:Nos": ["tcp:192.168.56.16:6653, tcp:192.168.56.17:6633"],
+  "ietf-IM:NOSConfParameters": ["1,7,1001,1007"],
+  "ietf-IM:nosAgentService": ["l2switch, DLUX"],
+  "ietf-IM:Authentication": "ubuntu",
+  "ietf-IM:netDevs": ["tcp:192.168.0.13:6640", "tcp:192.168.0.14:6640"],
+  "ietf-IM:SAPAvailableForElement_NetDev": ["OVSDB Protocol, OF-CONFIG Protocol"],
+  "ietf-IM:netDevAgentService": ["192.168.0.14"],
+  "ietf-IM:netDevAgentPort": "830",
+  "ietf-IM:netDevAdapterService": ["OpenFlow Protocol"],
+  "ietf-IM:SBIProtocol": ["OVSDB API, NETCONF4J API"],
+  "ietf-IM:Statistics_NetDevRsrc": ["output.csv"]
+}

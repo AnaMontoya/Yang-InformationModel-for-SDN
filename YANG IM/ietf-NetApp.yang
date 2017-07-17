@@ -1,0 +1,71 @@
+submodule ietf-NetApp {
+	yang-version 1.1;
+	belongs-to ietf-SystemIM {
+		prefix "NetAppYang";
+	}
+
+	include ietf-NorthboundService;
+	include ietf-NetAppAgentService;
+	include ietf-NetAppSettings;
+	
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "Submodel that represents the network applications holding business
+		logic on top of SDN";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+	
+	leaf ApplicationSystem {
+		type string;
+		description "Represents the system where may be hosted the NetApps";
+	}
+	leaf-list netApp {
+		type leafref {
+			path "/ApplicationSystem";
+		}
+		description "Referred to the ApplicationSystem node to represent instances 
+		of NetApps";
+	}
+	leaf HostService_NetAppNbServ {
+		type leafref {
+			path "/northboundService";
+		}
+		description "Referred to the northboundService node for representing the 
+		relationship between NetApp and NorthboundService submodule";
+	}
+	leaf HostService_NetAppAgentServ {
+		type leafref {
+			path "/netAppAgentService";
+		}
+		description "Referred to the netAppAgentService node for representing the 
+		relationship between NetApp and NetAppAgentService submodules";
+	}
+	
+	leaf-list ElementSettingData_NetApp {
+		type leafref {
+			path "/NetAppConfParameters";
+		}
+		description "Referred to the NetAppConfParameters node for representing 
+		the relationship between NetApp and NetAppCapabilities";
+	}
+
+}

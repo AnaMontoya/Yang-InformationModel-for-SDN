@@ -1,0 +1,136 @@
+=========================================
+INSTALL OF-CONFIG WITH OVS AND MININET
+=========================================
+# Go to home folder
+cd ~
+# Install OVS dependencies
+sudo apt-get install -y python-simplejson python-qt4 python-twisted-conch automake autoconf gcc uml-utilities libtool pkg-config
+# Install appropiate Linux kernel (3.13.0-53)
+sudo apt-get install -y linux-image-3.13.0-53-generic linux-headers-3.13.0-53-generic
+# Cleaning
+sudo apt-get clean
+sudo apt-get purge
+# Download and extract OVS
+wget http://openvswitch.org/releases/openvswitch-2.3.1.tar.gz
+tar -xf openvswitch-2.3.1.tar.gz
+rm -f openvswitch-2.3.1.tar.gz
+# Build with appropiate Linux kernel
+cd openvswitch-2.3.1
+./boot.sh
+./configure --prefix=/ --datarootdir=/usr/share --with-linux=/lib/modules/3.13.0-53-generic/build
+# Install OVS (v2.3.1)
+make
+sudo make install
+# Go to home folder
+cd ~
+# Install OF-Config dependencies
+sudo apt-get install -y libxml2-dev libssl-dev dbus libdbus-1-dev libxslt1-dev libcurl4-openssl-dev xsltproc cmake
+# Cleaning
+sudo apt-get clean
+sudo apt-get purge
+# Installing Pyang 1.4.1
+wget https://pyang.googlecode.com/files/pyang-1.4.1.tar.gz
+tar -xf pyang-1.4.1.tar.gz
+rm -f pyang-1.4.1.tar.gz
+cd pyang-1.4.1
+sudo python setup.py install
+# Go to home folder
+cd ~
+# Installing libssh
+wget https://red.libssh.org/attachments/download/140/libssh-0.7.0.tar.xz
+tar -xf libssh-0.7.0.tar.xz
+rm -f libssh-0.7.0.tar.xz
+cd libssh-0.7.0
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug ..
+sudo make install
+# Go to home folder
+cd ~
+# Installing libnetconf
+git clone https://code.google.com/p/libnetconf/
+cd libnetconf
+./configure
+make
+sudo make install
+# Go to home folder
+cd ~
+# Installing OF-Config
+git clone https://github.com/openvswitch/of-config.git
+cd of-config
+./boot.sh
+./configure --with-ovs-srcdir=/home/ubuntu/openvswitch-2.3.1 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
+make
+sudo make install
+# Go to home folder
+cd ~
+# Install Mininet (v2.2.1rc1)
+git clone git://github.com/mininet/mininet
+cd mininet
+git checkout -b 2.2.1rc1 2.2.1rc1
+cd ..
+mininet/util/install.sh -nfw
+# Go to home folder
+cd ~
+=============
+RUNNING OVS
+======================================================================
+# Start Open vSwitch
+sudo /usr/share/openvswitch/scripts/ovs-ctl --system-id=random start
+======================================================================
+
+======================================================================
+STOPPING OVS
+======================================================================
+# Stop Open vSwitch
+sudo /usr/share/openvswitch/scripts/ovs-ctl stop
+======================================================================
+
+======================================================================
+RUNNING OVS FROM STARTUP
+======================================================================
+# Edit the file '/etc/rc.local'
+sudo nano /etc/rc.local
+# Add the commands from RUNNING OVS
+# NOTE: the script must always end with exit 0
+======================================================================
+
+======================================================================
+RUNNING OF-CONFIG
+======================================================================
+# Running OF-Config
+sudo ofc-server -v 5 -f
+# If some problem with dbus, restart the dbus-daemon
+======================================================================
+
+======================================================================
+INSTALLING NETOPEER-CLI
+======================================================================
+# Go to home folder
+cd ~
+# Installing Netopeer CLI dependencies
+sudo apt-get install -y libncurses5-dev libreadline-dev
+sudo ldconfig
+# Installing Netopeer CLI
+git clone https://code.google.com/p/netopeer/
+cd netopeer/cli
+./configure LIBS=-lncurses CPPFLAGS=-I/usr/local/include/libxml2
+make
+sudo make install
+# Go to home folder
+cd ~
+======================================================================
+
+======================================================================
+OF-CONFIG AND NETOPEER-CLI
+======================================================================
+cd of-config/netconf-tests
+netopeer-cli
+connect --login ubuntu localhost
+======================================================================
+
+======================================================================
+OTHER COMMANDS
+======================================================================
+dbus-daemon --session --fork
+

@@ -1,0 +1,133 @@
+#========
+# HOST
+#========
+#--------------------
+# Veth Link Commands
+#--------------------
+# Create the linked virtual ethernet interfaces
+sudo ip link add name veth0 type veth peer name veth1
+sudo ip link set veth0 up
+sudo ip link set veth1 up
+
+# Delete the virtual ethernet interfaces
+sudo ip link set veth0 down
+sudo ip link set veth1 down
+sudo ip link del veth0
+
+#--------------------------
+# Veth Link Configuration
+#--------------------------
+# Add to /etc/network/interfaces
+# Virtual ethernet link interfaces
+auto veth0
+iface veth0 inet static
+	address		0.0.0.0
+	pre-up /sbin/ip link add name veth0 type veth peer name veth1
+        post-up /sbin/ip link set veth0 up
+        post-up /sbin/ip link set veth1 up
+        pre-down /sbin/ip link set veth0 down
+        pre-down /sbin/ip link set veth1 down
+        post-down /sbin/ip link del veth0
+
+#-------------------------
+# Custom Mininet Testbed
+#-------------------------
+# Copy the Mininet Python file to the VMs
+scp ~/Workspace/wkspace-enf3/telematics-mininet/testbed/testbed.py ubuntu@192.168.56.11:/home/ubuntu/mininet/custom/
+scp ~/Workspace/wkspace-enf3/telematics-mininet/testbed/testbed.py ubuntu@192.168.56.12:/home/ubuntu/mininet/custom/
+#---------------------------------------------------------------------------
+
+#==============
+# VM1 - OVSDB
+#==============
+# Configure the Network Adapter to a Virtual Ethernet Interface
+#---------------------------------------------------------------------------
+# 1. Open the VirtualBox GUI Manager
+# 2. Select the VM -> Settings -> Network
+# 3. Set fields as following:
+#   3.1 Attached to = Bridged Adapter
+#   3.2 Name = veth0
+#   3.3 Promiscuous Mode (Advanced) = Allow All
+#---------------------------------------------------------------------------
+# Switch S1 and Host H1
+#---------------------------------------------------------------------------
+# Create the network namespace
+sudo ip netns add h1
+# Create the veth link to connect the network namespace to the Open vSwitch
+sudo ip link add h1-eth0 type veth peer name s1-eth1
+sudo ip link set s1-eth1 up
+# Connect one end of the veth link to the network namespace
+sudo ip link set h1-eth0 netns h1
+# Assign IP address to the network namespace
+sudo ip netns exec h1 ip addr add 10.0.0.1/24 dev h1-eth0
+sudo ip netns exec h1 ip link set h1-eth0 up
+# Add the Open vSwitch
+sudo ovs-vsctl add-br s1
+# Connect the other end of the veth link to the Open vSwitch
+sudo ovs-vsctl add-port s1 s1-eth1
+# Add to the Open vSwitch the interface connected to the bridged veth
+sudo ifconfig eth0 0
+sudo ovs-vsctl add-port s1 eth0
+
+# Test Connection
+sudo ip netns exec h1 ping 10.0.0.2 -c 1
+
+#---------------------------------------------------------------------------
+# Custom Mininet Testbed
+#---------------------------------------------------------------------------
+# Add execution permission to the Mininet Python file
+chmod +x ~/mininet/custom/testbed_light.py
+
+# Run the Mininet Python file with attributes as root
+sudo ~/mininet/custom/./testbed_light.py --topoFanout=10 --topoInitialSw=1 --topoInitialHost=1 --controllerIp=192.168.56.16 --controllerPort=6653
+
+# Add to the Open vSwitch the interface connected to the bridged veth
+sudo ifconfig eth0 0
+sudo ovs-vsctl add-port s1 eth0
+#---------------------------------------------------------------------------
+
+#=================
+# VM2 - OFCONFIG
+#=================
+# Configure Network Adapter to a Virtual Ethernet Interface
+#---------------------------------------------------------------------------
+# 1. Open VirtualBox GUI
+# 2. Select VM -> Settings -> Network
+# 3. Set fields:
+#   3.1 Attached to = Bridged Adapter
+#   3.2 Name = veth1
+#   3.3 Promiscuous Mode (Advanced) = Allow All
+#---------------------------------------------------------------------------
+# Switch S2 and Host H2
+#---------------------------------------------------------------------------
+# Create the network namespace
+sudo ip netns add h2
+# Create the veth link to connect the network namespace to the Open vSwitch
+sudo ip link add h2-eth0 type veth peer name s2-eth1
+sudo ip link set s2-eth1 up
+# Connect one end of the veth link to the network namespace
+sudo ip link set h2-eth0 netns h2
+# Assign IP address to the network namespace
+sudo ip netns exec h2 ip addr add 10.0.0.2/24 dev h2-eth0
+sudo ip netns exec h2 ip link set h2-eth0 up
+# Add the Open vSwitch
+sudo ovs-vsctl add-br s2
+# Connect the other end of the veth link to the Open vSwitch
+sudo ovs-vsctl add-port s2 s2-eth1
+# Add to the Open vSwitch the interface connected to the bridged veth
+sudo ifconfig eth0 0
+sudo ovs-vsctl add-port s2 eth0
+#---------------------------------------------------------------------------
+# Custom Mininet Testbed
+#---------------------------------------------------------------------------
+# Add execution permission to the Mininet Python file
+chmod +x ~/mininet/custom/testbed_light.py
+
+# Run the Mininet Python file with attributes as root
+sudo ~/mininet/custom/./testbed_light.py --topoFanout=10 --topoInitialSw=1001 --topoInitialHost=1001 --controllerIp=192.168.56.16 --controllerPort=6653
+
+# Add to the Open vSwitch the interface connected to the bridged veth
+sudo ifconfig eth0 0
+sudo ovs-vsctl add-port s1001 eth0
+---------------------------------------------------------------------------
+===========================================================================

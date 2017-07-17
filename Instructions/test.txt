@@ -1,0 +1,29 @@
+#===========================================================================
+# OVSDB
+#===========================================================================
+./test_ovsdb-tool.sh -r 1:1
+./test_ovsdb-tool.sh -r 1:10
+./test_ovsdb-tool.sh -r 1:25
+./test_ovsdb-tool.sh -r 1:50
+./test_ovsdb-tool.sh -r 1:75
+./test_ovsdb-tool.sh -r 1:100
+
+#===========================================================================
+# OFCONFIG
+#===========================================================================
+./test_ofconfig-tool.sh -r 1001:1001
+./test_ofconfig-tool.sh -r 1001:1010
+./test_ofconfig-tool.sh -r 1001:1025
+./test_ofconfig-tool.sh -r 1001:1050
+./test_ofconfig-tool.sh -r 1001:1075
+./test_ofconfig-tool.sh -r 1001:1100
+
+#===========================================================================
+# MANAGER
+#===========================================================================
+./test_manager_set-controller.sh -r1 1:1 -r2 1001:1001
+./test_manager_set-controller.sh -r1 1:10 -r2 1001:1010
+./test_manager_set-controller.sh -r1 1:25 -r2 1001:1025
+./test_manager_set-controller.sh -r1 1:50 -r2 1001:1050
+./test_manager_set-controller.sh -r1 1:75 -r2 1001:1075
+./test_manager_set-controller.sh -r1 1:100 -r2 1001:1100

@@ -1,0 +1,64 @@
+================================
+INSTALL OVS WITH MININET
+================================
+# Install Open vSwitch (v2.3.1)
+# Go to home folder
+cd ~
+# Install OVS dependencies
+sudo apt-get install -y python-simplejson python-qt4 python-twisted-conch automake autoconf gcc uml-utilities libtool pkg-config
+# Install appropiate Linux kernel (3.13.0-53)
+sudo apt-get install -y linux-image-3.13.0-53-generic linux-headers-3.13.0-53-generic
+# Cleaning
+sudo apt-get clean
+sudo apt-get purge
+# Download and extract OVS
+wget http://openvswitch.org/releases/openvswitch-2.3.1.tar.gz
+tar -xf openvswitch-2.3.1.tar.gz
+rm -f openvswitch-2.3.1.tar.gz
+# Build with appropiate Linux kernel
+cd openvswitch-2.3.1
+./boot.sh
+./configure --prefix=/ --datarootdir=/usr/share --with-linux=/lib/modules/3.13.0-53-generic/build
+# Install OVS (v2.3.1)
+make
+sudo make install
+# Go to home folder
+cd ~
+# Install Mininet (v2.2.1rc1)
+git clone git://github.com/mininet/mininet
+cd mininet
+git checkout -b 2.2.1rc1 2.2.1rc1
+cd ..
+mininet/util/install.sh -nfw
+# Go to home folder
+cd ~
+=============
+RUNNING OVS
+======================================================================
+# Start Open vSwitch
+sudo /usr/share/openvswitch/scripts/ovs-ctl --system-id=random start
+======================================================================
+
+======================================================================
+STOPPING OVS
+======================================================================
+# Stop Open vSwitch
+sudo /usr/share/openvswitch/scripts/ovs-ctl stop
+======================================================================
+
+======================================================================
+RUNNING OVS FROM STARTUP
+======================================================================
+# Edit the file '/etc/rc.local'
+sudo nano /etc/rc.local
+# Add the commands from RUNNING OVS
+# NOTE: the script must always end with exit 0
+======================================================================
+
+======================================================================
+OTHER COMMANDS
+======================================================================
+sudo ovs-vsctl set-manager ptcp:6640
+sudo ovs-vsctl set-manager tcp:192.168.254.128:6640
+sudo mn --controller=remote,ip=192.168.254.128 --topo=linear,2
+

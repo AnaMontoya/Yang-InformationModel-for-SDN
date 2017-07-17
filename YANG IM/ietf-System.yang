@@ -1,0 +1,94 @@
+module ietf-SystemIM {
+	yang-version "1.1";
+	namespace "urn:ietf:params:xml:ns:yang:ietf-SystemIM";
+	prefix "SysYang";
+	
+	//MngtPlane
+	include ietf-Manager;
+	include ietf-Adapter;
+	include ietf-AgentServices;
+	include ietf-AdapterServices;
+	include ietf-ProcessIndications;
+	include ietf-ManagementService;
+	include ietf-ManagementServiceCapabilities;
+	include ietf-ProtocolEndpoint;
+	include ietf-ServiceAccessPoint;
+	include ietf-StandarizedYangModules;
+	include ietf-SDN; 
+	//AppPlane
+	include ietf-Server;
+	include ietf-NetApp;
+	include ietf-NOS;
+	include ietf-NetAppAgentService;
+	include ietf-NetAppSettings;
+	include ietf-AppPlane;
+	include ietf-ControlPlane;
+	include ietf-DataPlane;
+	include ietf-MngtPlane;
+	include ietf-NetAppCapabilities;
+	include ietf-NorthboundService;
+	//ControlPlane
+	include ietf-NOSService;
+	include ietf-ApplicationService;
+	include ietf-DistributingService;
+	include ietf-ControlService;
+	include ietf-NetSlicer;
+	include ietf-NetSlicerAgentService;
+	include ietf-SlicingService;
+	include ietf-InterAS;
+	include ietf-NOSAgentService;
+	include ietf-NOSServiceCapabilities;
+	include ietf-NOSServiceSettings;
+	include ietf-SlicingStatistics;
+	include ietf-SlicingCapabilities;
+	include ietf-SlicingSettings;
+	include ietf-NetInterASAgentService;
+	include ietf-InterASService;
+	include ietf-InterASSettings;
+	include ietf-InterASCapabilities;
+	include ietf-NetAppAdapterService;
+	include ietf-NetDevAdapterService;
+	include ietf-NetSlicerAdapterService;
+	include ietf-NOSAdapterService;
+	include ietf-NetInterASAdapterService;
+	//NetDev
+	include ietf-NetDev;
+	include ietf-NetDevAgentService;
+	include ietf-NetDevService;
+	include ietf-NetDevResource;
+	include ietf-SouthboundService;
+	include ietf-NetDevResourceSettings;
+	include ietf-NetDevCapabilities;
+	include ietf-NetDevServiceSettings;
+	include ietf-StatisticalData;
+
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "Module that includes all the submodules that characterizes the entire SDN architecture
+	and describe a Management Plane to support management tasks over the network. The collections of the submodules
+	corresponds to a protocol-agnostic Information Model that supports technology heterogeneity and inter-domain
+	communication";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+		
+	}
+		
+}

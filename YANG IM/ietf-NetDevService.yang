@@ -1,0 +1,74 @@
+submodule ietf-NetDevService {
+	yang-version 1.1;
+	belongs-to ietf-SystemIM {
+		prefix "NetDevServ";
+	}
+
+	include ietf-NetDevServiceSettings;
+	
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "Submodule for representing network services 
+	hosted in network devices";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+
+	leaf-list netDevService {
+		type string;
+		description "Device Services";
+	}
+
+	identity SouthboundService { 
+		base NetDevServ:NetDevService;
+		description "The SouthboundService inherits from the 
+		NetDevService and includes properties and methods to 
+		handle the communication through the SBIs";
+		}
+
+	identity NetDevService { 
+		description "Network Device Services";
+		}
+
+	leaf-list ServServDependency { 
+		type identityref {
+			base NetDevService;
+		}
+		description "Indicates that NetDev services cooperate 
+		with or are required for other NetDev services to 
+		perform their functions";
+	}
+	leaf-list ElementSettingData_NetDevServ {
+		type leafref {
+			path "/NetDevServParameters";
+		}
+		description "This relationship allows the NetDevServiceSettings
+		class describing the configuration parameters of services
+		hosted in NetDevs";
+	}
+	leaf Prority {
+		type uint16;
+		description "Indicates the preference for processing a group of 
+		services hosted by a NetDev.";
+	}
+
+}
+	

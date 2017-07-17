@@ -1,0 +1,79 @@
+submodule ietf-ManagementServiceCapabilities {
+	yang-version 1.1;
+	belongs-to ietf-SystemIM {
+		prefix "MngtSrvCapYang";
+	}
+	
+	include ietf-ManagementService;
+	
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "Submodule that describes both supported and 
+	excluded capabilities in ManagementServices, understanding 
+	capabilities as device features (e.g., a supported capability 
+	of Configuration Services is declared by the Management
+	Service that modifies the SBI communication of a NetDev)";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+	
+	choice Services {
+		leaf FaultServices {
+			type leafref {
+				path "/ElementCapabilities/FaultService";
+			}
+			description "Service referred to the FaultService in the ManagementService";
+		}
+		leaf ConfigurationServices {
+			type leafref {
+				path "/ElementCapabilities/ConfigurationService";
+			}
+			description "Service referred to the ConfigurationService in the ManagementService";
+		}
+		leaf AccountingServices {
+			type leafref {
+				path "/ElementCapabilities/AccountingService";
+			}
+			description "Service referred to the AccountingService in the ManagementService";
+		}
+		leaf PerformanceServices {
+			type leafref {
+				path "/ElementCapabilities/PerformanceService";
+			}
+			description "Service referred to the PerformanceService in the ManagementService";
+		}
+		leaf SecurityServices {
+			type leafref {
+				path "/ElementCapabilities/SecurityService";
+			}
+			description "Service referred to the SecurityService in the ManagementService";
+		}
+		leaf ProgrammingServices {
+			type leafref {
+				path "/ElementCapabilities/ProgrammingService";
+			}
+			description "Service referred to the ProgrammingService in the ManagementService";
+		}
+		description "Represents the service that is choosen for an SDN 
+		management operation, each leaf is referred to the corresponding
+		service";
+	}
+}
