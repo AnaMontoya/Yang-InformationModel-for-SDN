@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<submodule name="ietf-NetDevAdapterService"
+           xmlns="urn:ietf:params:xml:ns:yang:yin:1">
+  <yang-version value="1.1"/>
+  <belongs-to module="ietf-SystemIM">
+    <prefix value="NtDevAdptSrv"/>
+  </belongs-to>
+  <include module="ietf-NetApp"/>
+  <include module="ietf-AdapterServices"/>
+  <include module="ietf-ServiceAccessPoint"/>
+  <organization>
+    <text>University of Cauca</text>
+  </organization>
+  <contact>
+    <text>Ana Montoya 
+Phone: +57 301 630 9733
+Email: anitamont7@gmail.com
+
+Daniela M. Casas
+Phone: +57 317 777 7225
+Email: danielacasas_@ieee.org
+
+University of Cauca 
+Calle 5 #4-70 Popayán, Cauca
+Colombia</text>
+  </contact>
+  <description>
+    <text>This submodule represents the AdapterService
+for the Network Devices</text>
+  </description>
+  <revision date="2017-04-12">
+    <description>
+       <text>Initial revision</text>
+    </description>
+    <reference>
+      <text>RFC 7950 - The YANG 1.1 Data Modeling Language
+      </text>
+    </reference>
+  </revision>
+  <leaf-list name="netDevAdapterService">
+    <type name="identityref">
+      <base name="NetDevAdapterServices"/>
+    </type>
+    <description>
+      <text>A representation of the Adapter for NetDevs itself.</text>
+    </description>
+  </leaf-list>
+  <leaf-list name="ProvidesEnpoint_NtDevAdptSrv">
+    <type name="union">
+      <type name="identityref">
+        <base name="ProvidesEndpoint"/>
+      </type>
+      <type name="NetDevMI"/>
+    </type>
+    <description>
+      <text>Represents the relationship between ServiceAccessPoint by the ProvidesEnpoint through the NetDev Management Interface</text>
+    </description>
+  </leaf-list>
+  <leaf-list name="ServiceSAPDependency_NtDevAdptSrv">
+    <type name="union">
+      <type name="identityref">
+        <base name="ServiceSAPDependency"/>
+      </type>
+      <type name="NetDevMI"/>
+    </type>
+    <description>
+      <text>Represents the relationship to ietf-ServiceAccessPoint by the ServiceSAPDependency through the NetDev Management Interface</text>
+    </description>
+  </leaf-list>
+</submodule>

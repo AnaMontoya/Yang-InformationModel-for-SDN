@@ -1,0 +1,110 @@
+submodule ietf-AgentServices {
+	yang-version 1.1;
+	belongs-to ietf-SystemIM {
+		prefix "AgntServYang";
+	}
+	
+	include ietf-ProcessIndications;
+	include ietf-ServiceAccessPoint;
+
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "Submodel that represents Agents running on SDN managed
+	 resources (i.e., NetDevAgentService, NetSlicerAgentService, NOSAgentService, 
+	 NetAppAgentService and NetInterAsAgentService)";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+
+	identity AgentService {
+		description "The AgentService represents an Agent running on SDN managed
+		resources, such as NetDev, NetSlicer, NOS and NetApp.";
+	}
+
+	identity NetAppAgentServices {
+		base "AgntServYang:AgentService";
+		description "Inherits the defintion of AgentService, it is related to 
+		the Agent for the NetApps in the Application Plane.";
+	}
+	identity NOSAgentServices {
+		base "AgntServYang:AgentService";
+		description "Inherits the defintion of AgentService, it is related to 
+		the Agent for the NOS in the Control Plane.";
+	}
+	identity NetSlicerAgentServices {
+		base "AgntServYang:AgentService";
+		description "Inherits the defintion of AgentService, it is related to 
+		the Agent for the Slicers in the Control Plane.";
+	}
+	identity NetInterASAgentServices {
+		base "AgntServYang:AgentService";
+		description "Inherits the defintion of AgentService, it is related to 
+		the Agent for the InterAS in the Control Plane.";
+	}
+	identity NetDevAgentServices {
+		base "AgntServYang:AgentService";
+		description "Inherits the defintion of AgentService, it is related to 
+		the Agent for the NetDevs in the Data Plane.";
+	}
+		
+	leaf-list ProvidesEndpoint_AgntServ {
+		type union {
+			type identityref{
+				base ProvidesEndpoint;
+			}
+			type ManagementInterface;
+		}
+		description "Models the communication point from AgentServices to
+		AdapterServices by the ServiceAccessPoint tagged as ManagementInterface.";
+	}
+
+	leaf-list ServiceSAPDependency_AgntServ {
+		type union {
+			type identityref {
+				base ServiceSAPDependency;
+			}
+			type ManagementInterface;
+		}
+		description "Models the communication point from AgentServices to
+		AdapterServices by the ServiceAccessPoint tagged as ManagementInterface";
+	}
+
+	leaf-list AgentNotification {
+		type identityref{
+			base Notification;
+		}
+		description "Represents the relationship between ProcessIndications and 
+		AgentServices with by referring to the Notification identity.";
+	}
+	leaf ManageProtocol {
+		type uint16;
+		description "Both the AgentProtocol from the AgentService and the ManageProtocol 
+		from the AdapterService define the communication protocol.";
+	}
+	leaf Authentication {
+		type string;
+		description "Identifies the parameter to access the communication.";
+	}
+	leaf MaxConnections {
+		type uint16;
+		description "Defines the maximum number of concurrent connections supported.";
+	}		
+}

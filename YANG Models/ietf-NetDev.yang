@@ -1,0 +1,77 @@
+submodule ietf-NetDev {
+	yang-version 1.1;
+	belongs-to ietf-SystemIM {
+		prefix "NetDevYang";
+	}
+
+	include ietf-NetDevAgentService;
+	include ietf-NetDevService;
+	include ietf-NetDevResource;
+	include ietf-ServiceAccessPoint;
+	
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "Submodule that represents a network device within 
+	a network such as an OpenFlow switch";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+	
+	leaf-list netDevs {
+		type string;
+		description "IP from netDevs switches";
+	}
+
+	leaf rangeSwitch {
+		type string;
+		description "Defines the range of switches to be managed";
+	}
+	leaf HostService_NetDevServ {
+		type leafref {
+			path "/netDevService";
+		}
+		description "Defines the relationship between the NetDevService and the 
+		NetDev representing network services hosted in network devices";
+	}
+	leaf HostService_NetDevAgntServ {
+		type leafref {
+			path "/netDevAgentService";
+		}
+		description "Defines the relationship between the NetDevService 
+		and the NetDev representing network services hosted in network devices";
+	} 
+	container SystemComponent_NtDevRsc {
+		leaf-list NetDev_NtDevRsc {
+			type leafref {
+				path "/netDevResource";
+			}
+			description "Referred to the netDevResource leaf to describe the relationship";
+		}
+		description "Represents that the network of devices is composed by diverse 
+		NetDev resources";
+	}
+	leaf-list SAPAvailableForElement_NetDev {
+		type SouthboundInterface;
+		description "Represents the relationship between the ServicesAccessPoint and the NetDev 
+		reflects the access from the Control Plane to the NetDevs in order to manage its 
+		components by the southbound interfaces defined in such ServiceAccessPoint";
+	}
+}

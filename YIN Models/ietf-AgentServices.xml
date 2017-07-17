@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<submodule name="ietf-AgentServices"
+           xmlns="urn:ietf:params:xml:ns:yang:yin:1">
+  <yang-version value="1.1"/>
+  <belongs-to module="ietf-SystemIM">
+    <prefix value="AgntServYang"/>
+  </belongs-to>
+  <include module="ietf-ProcessIndications"/>
+  <include module="ietf-ServiceAccessPoint"/>
+  <organization>
+    <text>University of Cauca</text>
+  </organization>
+  <contact>
+    <text>Ana Montoya 
+Phone: +57 301 630 97331
+Email: anitamont7@gmail.com
+
+Daniela M. Casas
+Phone: +57 317 777 7225
+Email: danielacasas_@ieee.org
+
+University of Cauca 
+Calle 5 #4-70 Popayán, Cauca
+Colombia</text>
+  </contact>
+  <description>
+    <text>The aim of this submodule is to represent Agents running on SDN managed
+resources (i.e., NetDevAgentService, NetSlicerAgentService, NOSAgentService, NetAppAgentService
+and NetInterAsAgentService).</text>
+  </description>
+  <revision date="2017-04-12">
+    <description>
+       <text>Initial revision</text>
+    </description>
+    <reference>
+      <text>RFC 7950 - The YANG 1.1 Data Modeling Language
+      </text>
+    </reference>
+  </revision>
+  <identity name="AgentService">
+    <description>
+      <text>The AgentService represents an Agent running on SDN managed
+resources, such as NetDev, NetSlicer, NOS and NetApp.</text>
+    </description>
+  </identity>
+  <identity name="NetAppAgentServices">
+    <base name="AgntServYang:AgentService"/>
+    <description>
+      <text>Inherits the defintion of AgentService, it is related to 
+the Agent for the NetApps in the Application Plane.</text>
+    </description>
+  </identity>
+  <identity name="NOSAgentServices">
+    <base name="AgntServYang:AgentService"/>
+    <description>
+      <text>Inherits the defintion of AgentService, it is related to 
+the Agent for the NOS in the Control Plane.</text>
+    </description>
+  </identity>
+  <identity name="NetSlicerAgentServices">
+    <base name="AgntServYang:AgentService"/>
+    <description>
+      <text>Inherits the defintion of AgentService, it is related to 
+the Agent for the Slicers in the Control Plane.</text>
+    </description>
+  </identity>
+  <identity name="NetInterASAgentServices">
+    <base name="AgntServYang:AgentService"/>
+    <description>
+      <text>Inherits the defintion of AgentService, it is related to 
+the Agent for the InterAS in the Control Plane.</text>
+    </description>
+  </identity>
+  <identity name="NetDevAgentServices">
+    <base name="AgntServYang:AgentService"/>
+    <description>
+      <text>Inherits the defintion of AgentService, it is related to 
+the Agent for the NetDevs in the Data Plane.</text>
+    </description>
+  </identity>
+  <leaf-list name="ProvidesEndpoint_AgntServ">
+    <type name="union">
+      <type name="identityref">
+        <base name="ProvidesEndpoint"/>
+      </type>
+      <type name="ManagementInterface"/>
+    </type>
+    <description>
+      <text>Models the communication point from AgentServices to
+AdapterServices by the ServiceAccessPoint tagged as ManagementInterface.</text>
+    </description>
+  </leaf-list>
+  <leaf-list name="ServiceSAPDependency_AgntServ">
+    <type name="union">
+      <type name="identityref">
+        <base name="ServiceSAPDependency"/>
+      </type>
+      <type name="ManagementInterface"/>
+    </type>
+    <description>
+      <text>Models the communication point from AgentServices to AdapterServices by the ServiceAccessPoint tagged as ManagementInterface.</text>
+    </description>
+  </leaf-list>
+  <leaf-list name="AgentNotification">
+    <type name="identityref">
+      <base name="Notification"/>
+    </type>
+    <description>
+      <text>Represents the relationship between ProcessIndications and  AgentServices with by referring to the Notification identity.</text>
+    </description>
+  </leaf-list>
+  <leaf name="ManageProtocol">
+    <type name="uint16"/>
+    <description>
+      <text>Both the AgentProtocol from the AgentService and the ManageProtocol from the AdapterService define the communication protocol.</text>
+    </description>
+  </leaf>
+  <leaf name="Authentication">
+    <type name="string"/>
+    <description>
+      <text>Identifies the parameter to access the communication.</text>
+    </description>
+  </leaf>
+  <leaf name="MaxConnections">
+    <type name="uint16"/>
+    <description>
+      <text>Defines the maximum number of concurrent connections supported.</text>
+    </description>
+  </leaf>
+</submodule>

@@ -1,0 +1,162 @@
+submodule ietf-AdapterServices {
+	yang-version 1.1;
+	belongs-to ietf-SystemIM {
+		prefix "AdptServYang";
+	}
+	
+	include ietf-Manager;
+	include ietf-Adapter;
+	include ietf-ServiceAccessPoint;
+
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+		
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "Submodel that models adapters that parse
+	and forward requests, responses, and notifications between 
+	ManagementServices and AgentServices by Management Interfaces
+	(i.e., NetAppMI, NetSlicerMI and NetInterASMI) defined in the 
+	ServiceAccessPoint";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+
+	identity AdapterService {
+		description "The AdapterService models an Adapter
+		in charge of parsing and forwarding request, 
+		response, and notifications between the 
+		ManagementService and the AgentService.";
+	}
+
+	identity NetAppAdapterServices {
+		base "AdptServYang:AdapterService";
+		description "Inherits the defintion of AdapterService, 
+		it is related to the Adapter for the NetApps in the 
+		Application Plane";
+	}
+	identity NOSAdapterServices {
+		base "AdptServYang:AdapterService";
+		description "Inherits the defintion of AdapterService, 
+		it is related to the Adapter for the NOSs in the Control Plane";
+		
+	}
+	identity NetSlicerAdapterServices {
+		base "AdptServYang:AdapterService";
+		description "Inherits the defintion of AdapterService, 
+		it is related to the Adapter for the Slicers in the Control Plane";
+		
+	}
+	identity NetInterASAdapterServices {
+		base "AdptServYang:AdapterService";
+		description "Inherits the defintion of AdapterService, 
+		it is related to the Adapter for the NetInterAS in the Control Plane";
+	}
+	identity NetDevAdapterServices {
+		base "AdptServYang:AdapterService";
+		description "Inherits the defintion of AdapterService, 
+		it is related to the Adapter for the NetDevs in the Data Plane";
+		
+	}
+	
+	choice HostedService {
+		description "Represents the relationship between 
+		AdapterServices and	its hosting system, holds the 
+		Adapter and Manager leaves referred to the adapter
+		leaf and manager leaf, respectively, for indicating 
+		that the AdapterServices may be hosted on the 
+		Manager or the Adapter";
+		leaf Manager {
+			type leafref {
+				path "/manager";
+			}
+			description "Represents the system hosting the 
+			Management Services (e.g., a Configuration Service 
+			may be carried out as a Web application running on 
+			a Manager that may be either an Apache Tomcat or a 
+			GlassFish Server). It is referred to the representing 
+			leaf of the manager in the Manager submodule.";
+		}
+		leaf Adapter {
+			type leafref {
+				path "/adapter";
+			}
+			description "Represents a system that may host the 
+			AdapterService. It is referred to the representing 
+			leaf of the adapter in the Adapter submodule.";
+		}
+	}
+
+	leaf-list ProvidesEndpoint_Adpt {
+		type union {
+			type identityref {
+				base ProvidesEndpoint;
+			}
+			type AdapterInterface;
+		}
+		description "Relates the AdapterServices to the 
+		ManagementServices by the ServiceAccessPoint 
+		tagged as AdapterInterface.";
+	}
+
+	leaf-list ServiceSAPDependency_Adpt {
+		type union {
+			type identityref {
+				base ServiceSAPDependency;
+			}
+			type AdapterInterface;
+		}
+		description "Relates the AdapterServices to the 
+		ManagementServices by the ServiceAccessPoint 
+		tagged as AdapterInterface.";
+	}
+	leaf-list ProvidesEndpoint_AdptServ {
+		type union {
+			type identityref {
+				base ProvidesEndpoint;
+			}
+			type ManagementInterface;
+		}
+		description "Models the communication point from 
+		the AdapterServices to the AgentServices 
+		by the ServiceAccessPoint tagged 
+		as ManagementInterface.";
+	}
+
+	leaf-list ServiceSAPDependency_AdptServ {
+		type union {
+			type identityref {
+				base ServiceSAPDependency;
+			}
+			type ManagementInterface;
+		}
+		description "Models the communication point from 
+		the AdapterServices to the AgentServices 
+		by the ServiceAccessPoint tagged as ManagementInterface.";
+	}
+	leaf AgentInterface {
+		type uint16;
+		description "Represents the interface provided by 
+		the communication with the Agent.";
+	}
+	leaf AgentProtocol {
+		type uint16;
+		description "Identifies the communication protocol 
+		used to interact with a specific AgentService.";
+	}
+}

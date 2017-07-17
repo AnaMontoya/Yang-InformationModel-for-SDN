@@ -1,0 +1,81 @@
+submodule ietf-SlicingService {
+	yang-version 1.1;
+	belongs-to ietf-SystemIM {
+		prefix "SlicingServYang";
+	}
+	
+	include ietf-ServiceAccessPoint;
+	include ietf-SlicingSettings;
+
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "Submodule that represents the service in charge of 
+	splitting the networkfor representing an instance of itself into several slices";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+
+	leaf-list slicingService {
+		type string;
+		description "Represents an instance of itself";
+	}
+
+	leaf-list ProvidesEndpoint_SlicingServ {
+		type union {
+			type SouthboundInterface;
+			type identityref {
+				base ProvidesEndpoint;
+			}
+		}
+		description "Relationship that represents the communication point with entities from the Data Plane 
+		by the SouthboundInterface";
+	}
+	leaf-list ServiceSAPDependency_SlicingServ {
+		type union {
+			type SouthboundInterface;
+			type identityref {
+				base ServiceSAPDependency;
+			}
+		}
+		description "Relationship that represents the communication point with entities from the Data Plane 
+		by the SouthboundInterface";
+	}
+	leaf-list Slices {
+		type string;
+		description "Declares the maximum number of concurrent slices supported by a NetSlicer";
+	}
+	leaf-list Capabilities {
+		type string;
+		description "Specifies the capabilities supported an excluded for NetSlicers";
+	}
+
+	leaf-list ElementSettingData_SlicingServ {
+		type leafref {
+			path "/SlicingConfParameters";
+		}
+		description "Referred to the SlicingConfParameters node for representing the relationship with the 
+		SlicingSettings submodule";
+	}
+	leaf CurrentSlices{
+		type uint16;
+		description "Reports the number of slices currently operated by a particular NetSlicer";
+	}
+}

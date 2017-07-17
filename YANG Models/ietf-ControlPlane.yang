@@ -1,0 +1,75 @@
+submodule ietf-ControlPlane {
+	yang-version 1.1;
+	belongs-to ietf-SystemIM {
+		prefix "ControlPlaneYang";
+	}
+
+	include ietf-NOS;
+	include ietf-NetSlicer;
+	include ietf-InterAS;
+
+	organization "University of Cauca";
+	contact 
+		"Ana Montoya 
+		Phone: +57 301 630 97331
+		Email: anitamont7@gmail.com
+
+		Daniela M. Casas
+		Phone: +57 317 777 7225
+		Email: danielacasas_@ieee.org
+
+		Oscar Mauricio Caicedo
+		Phone: +57 +57 310 491 8132
+		Email: omcaicedo@unicauca.edu.co
+
+		University of Cauca 
+		Calle 5 #4-70 Popayán, Cauca
+		Colombia";
+
+	description "Submodule that represents the Control plane to 
+	be managed by the Management Plane";
+
+	revision 2017-04-12 {
+		description "Initial revision.";
+		reference "RFC 7950 - The YANG 1.1 Data Modeling Language";
+	}
+
+	leaf NetControlDomain{
+		type string;
+		description "Represents the domain to which the Control
+		Plane to be managed belongs";
+	}
+	leaf-list ControlPlane{
+		type leafref{
+			path "/NetControlDomain";
+		}
+		description "Represents an instance of the Application Plane 
+		related to the NetControl domain";
+	}
+
+	container SystemComponent_CtrlPlane {
+		description "Relationship that describes that the ControlPlane 
+		is formed by one or more NOSs, NetSlicers, and InterASs";
+		leaf-list NOS_CtrlPlane {
+			type leafref {
+				path "/Nos";
+			}
+			description "Represents new instances of NOS that may
+			 be added to the Control Plane";
+		}
+		leaf-list NetSlicer_CtrlPlane {
+			type leafref {
+				path "/netSlicer";
+			}
+			description "Represents new instances of NetSlicer that may
+			 be added to the Control Plane";
+		}
+		leaf-list InterAS_CtrlPlane {
+			type leafref {
+				path "/interAS";
+			}
+			description "Represents new instances of NetApp that may
+			 be added to the Control Plane";
+		}
+	}
+}
