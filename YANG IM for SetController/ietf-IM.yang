@@ -360,7 +360,7 @@ leaf Authentication {
 		description "Identifies the parameter to access the communication.";
 	}
 	
-//-----------NetDev------------------------
+//---------- Data Plane-----------------------
 //include ietf-NetDev; 
 	leaf-list netDevs {
 		type string;
