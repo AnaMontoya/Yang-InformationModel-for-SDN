@@ -1,5 +1,5 @@
 #===========================================================================
-# MmanagerGER (192.168.0.12)
+# Manager (192.168.0.12)
 #===========================================================================
 # Create SSH Key
 #---------------------------------------------------------------------------
@@ -58,7 +58,7 @@ rm running-config.xml
 # Server=192.168.0.12 + Port=830 + User=ubuntu + Interface=eth0
 #   Switches=[s1001] + Output=1.csv
 #       Controller=tcp:1192.168.56.17:6633 (opendaylight)
-            ./ofconfig-tool_set-controller.sh -s 192.168.0.14 -p 830 -u ubuntu -i eth0 -r 1001:1001 -o 1.csv -c tcp:1192.168.56.17:6633
+            ./ofconfig-tool_set-controller.sh -s 192.168.0.14 -p 830 -u ubuntu -i eth0 -r 1001:1001 -o 1.csv -c tcp:192.168.56.17:6633
 #       Controller=tcp:192.168.56.16:6653 (ryu)
             ./ofconfig-tool_set-controller.sh -s 192.168.0.14 -p 830 -u ubuntu -i eth0 -r 1001:1001 -o 1.csv -c tcp:192.168.56.16:6653
 #   Switches=[s1001...s1010] + Output=10.csv
@@ -111,18 +111,18 @@ sudo ovs-vsctl del-controller sX
 # Script
 #---------------------------------------------------------------------------
 # 1. Init controller configuration to enable editing
-#   1.1 Set OVSDB mmanagerger listener to support ./ofconfig-tool_init-controller.sh
-sudo ovs-vsctl set-mmanagerger ptcp:6640
-#   1.3 After running ./ofconfig-init-controller.sh, delete OVSDB mmanagerger listener
-sudo ovs-vsctl del-mmanagerger
+#   1.1 Set OVSDB manager listener to support ./ofconfig-tool_init-controller.sh
+sudo ovs-vsctl set-manager ptcp:6640
+#   1.3 After running ./ofconfig-init-controller.sh, delete OVSDB manager listener
+sudo ovs-vsctl del-manager
 #---------------------------------------------------------------------------
 #Check netopeer keys
 netconf> auth keys 
 #Remove keys
 netconf> auth keys remove "path" 
-#(eg. "/home/mmanager/.ssh/id_rsa")
+#(eg. "/home/manager/.ssh/id_rsa")
 
 # Add keys
 netconf> auth keys add "path" 
-#(eg. "/home/mmanagerger/.ssh/id_rsa")
+#(eg. "/home/manager/.ssh/id_rsa")
 ============================================================================

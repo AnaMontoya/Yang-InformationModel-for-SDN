@@ -38,12 +38,17 @@ module ietf-IM {
 		type string;
 		description "Represents an instance of the manager system";
 	}
-	
-//include ietf-Adapter;  
-	leaf adapter {
-			type string;
-			description "Represents an instance of the adapter system";
+	leaf HostService_MngtServ{ //entre manager y ManagementServices 
+		type leafref{
+			path "/MngtServ";
 		}
+		description "Represents the system hosting the 
+			Management Services (e.g., a Configuration Service 
+			may be carried out as a Web application running on 
+			a Manager that may be either an Apache Tomcat or a 
+			GlassFish Server). It is referred to the representing 
+			leaf of the manager in the Manager submodule.";
+	}
 //include ietf-AgentServices; 
 	identity AgentService {
 		description "The AgentService represents an Agent running on SDN managed
@@ -53,6 +58,11 @@ module ietf-IM {
 		base "IMYang:AgentService";
 		description "Inherits the defintion of AgentService, it is related to 
 		the Agent for the NetDevs in the Data Plane.";
+	}
+	identity NOSAgentServices {
+		base "IMYang:AgentService";
+		description "Inherits the defintion of AgentService, it is related to 
+		the Agent for the NOS in the Control Plane.";
 	}
 //include ietf-AdapterServices; 
 	identity AdapterService {
@@ -68,6 +78,10 @@ module ietf-IM {
 		
 	}
 //include ietf-ManagementService; 
+		leaf MngtServ{
+		type string;
+		description "";
+	}
 	container ElementCapabilities {
 		description "Relationship representing the capabilities supported for Services.";
 		leaf FaultService {
@@ -95,33 +109,7 @@ module ietf-IM {
 			description "Defines the supported and excluded capabilities for the ProgrammingService";
 		}
 	}
-	choice HostedService {
-		description "Represents the relationship between 
-		AdapterServices and	its hosting system, holds the 
-		Adapter and Manager leaves referred to the adapter
-		leaf and manager leaf, respectively, for indicating 
-		that the AdapterServices may be hosted on the 
-		Manager or the Adapter.";
-		leaf Manager {
-			type leafref {
-				path "/manager";
-			}
-			description "Represents the system hosting the 
-			Management Services (e.g., a Configuration Service 
-			may be carried out as a Web application running on 
-			a Manager that may be either an Apache Tomcat or a 
-			GlassFish Server). It is referred to the representing 
-			leaf of the manager in the Manager submodule.";
-		}
-		leaf Adapter {
-			type leafref {
-				path "/adapter";
-			}
-			description "Represents a system that may host the 
-			AdapterService. It is referred to the representing 
-			leaf of the adapter in the Adapter submodule.";
-		}
-	}
+
 
 //include ietf-ManagementServiceCapabilities; 
 	choice Services {
@@ -280,6 +268,13 @@ module ietf-IM {
 		description "Represents an instance of itself";
 	}
 
+//include ietf-NOSServiceSettings;	
+	leaf-list NOSConfParameters {
+		type string;
+		//config true;
+		description "";
+	}
+
 //include ietf-AppPlane; 
 	leaf NetAppDomain {
 		type string;
@@ -307,17 +302,7 @@ module ietf-IM {
 		description "Represents an instance of the Application Plane 
 		related to the NetControl domain";
 	}
-	container SystemComponent_CtrlPlane {
-		description "Relationship that describes that the ControlPlane 
-		is formed by one or more NOSs, NetSlicers, and InterASs";
-		leaf-list NOS_CtrlPlane {
-			type leafref {
-				path "/Nos";
-			}
-			description "Represents new instances of NOS that may
-			 be added to the Control Plane";
-		}
-	}
+	
 //include ietf-DataPlane; 
 	leaf NetworkDomain{
 		type string;
@@ -344,6 +329,36 @@ module ietf-IM {
 		description "Represents an instance of the Management Plane related to the 
 		InterAS domain from another Autonomous System";
 	}
+//-------------ControlPlane----------------
+//include ietf-NOSService; //ODL Features + l2switch Discovery topology (servicio interno)Servicios del NOS, como el que corremos en Ryu y los fetures de ODL
+identity NOSService {
+		description "";
+	}
+	identity ApplicationService {
+		base IMYang:NOSService;
+		description "";
+	}
+	identity DistributingService {
+		base IMYang:NOSService;
+		description "";
+	}
+	identity ControlService {
+		base IMYang:NOSService;
+		description "";
+	}
+
+//include ietf-NOSAgentService; //Actualización de topologia
+leaf-list nosAgentService {
+		type identityref {
+			base NOSAgentServices;
+		}
+		description "";
+	}
+
+leaf Authentication {
+		type string;
+		description "Identifies the parameter to access the communication.";
+	}
 	
 //-----------NetDev------------------------
 //include ietf-NetDev; 
@@ -351,13 +366,7 @@ module ietf-IM {
 		type string;
 		description "IP from netDevs switches";
 	}
-	leaf HostService_NetDevAgntServ {
-		type leafref {
-			path "/netDevAgentService";
-		}
-		description "Defines the relationship between the NetDevService 
-		and the NetDev representing network services hosted in network devices";
-	} 
+
 	leaf-list SAPAvailableForElement_NetDev {
 		type SouthboundInterface;
 		description "Represents the relationship between the ServicesAccessPoint and the NetDev 
@@ -371,6 +380,12 @@ module ietf-IM {
 			base NetDevAgentServices;
 		}
 		description "Represents an istance of itself";
+
+	leaf netDevAgentPort {
+		type string;
+		description "";
+		}
+	}
 	}
 //include ietf-NetDevAdapterService; 
 	leaf-list netDevAdapterService {
